@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4f46e5" />
+  <meta name="description" content="VeiCloud VPN login" />
+  <title>VeiCloud VPN · Login</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="auth-panel">
+      <div class="brand">
+        <span class="brand-mark"><i data-lucide="cloud"></i></span>
+        <span>VeiCloud <b>VPN</b></span>
+      </div>
+
+      <div class="auth-copy">
+        <span class="eyebrow">ACCOUNT</span>
+        <h1>Bienvenido</h1>
+        <p>Accede a VeiCloud.</p>
+      </div>
+
+      <form class="login-form" id="loginForm">
+        <label class="field">
+          <span>Correo</span>
+          <div class="input-wrap">
+            <i data-lucide="mail"></i>
+            <input type="email" name="email" autocomplete="email" placeholder="correo@ejemplo.com" required />
+          </div>
+        </label>
+
+        <label class="field">
+          <span>Contraseña</span>
+          <div class="input-wrap">
+            <i data-lucide="lock-keyhole"></i>
+            <input id="password" type="password" name="password" autocomplete="current-password" placeholder="••••••••" minlength="6" required />
+            <button class="icon-button" id="togglePassword" type="button" aria-label="Mostrar contraseña">
+              <i data-lucide="eye"></i>
+            </button>
+          </div>
+        </label>
+
+        <div class="form-row">
+          <label class="remember">
+            <input type="checkbox" />
+            <span>Recordarme</span>
+          </label>
+          <button class="text-button" type="button" data-soon>¿Olvidaste tu contraseña?</button>
+        </div>
+
+        <button class="primary-button" type="submit">
+          <span class="button-label">Entrar</span>
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </form>
+
+      <div class="divider"><span>o</span></div>
+
+      <button class="secondary-button" type="button" data-soon>
+        <i data-lucide="user-plus"></i>
+        Crear cuenta
+      </button>
+
+      <p class="legal">VeiCloud VPN · Secure access</p>
+    </section>
+
+    <section class="visual-panel" aria-label="VeiCloud VPN">
+      <div class="visual-top">
+        <span class="mini-pill"><span class="dot"></span> Online</span>
+        <span class="mini-icon"><i data-lucide="sparkles"></i></span>
+      </div>
+
+      <div class="orb orb-one"></div>
+      <div class="orb orb-two"></div>
+
+      <div class="visual-center">
+        <div class="shield-ring">
+          <div class="shield-core">
+            <i data-lucide="shield-check"></i>
+          </div>
+        </div>
+
+        <div class="status-copy">
+          <span>PROTECTED</span>
+          <strong>VeiCloud</strong>
+        </div>
+      </div>
+
+      <div class="status-grid">
+        <article class="glass-card">
+          <span class="card-icon"><i data-lucide="wifi"></i></span>
+          <div>
+            <small>Network</small>
+            <b>Private</b>
+          </div>
+        </article>
+
+        <article class="glass-card">
+          <span class="card-icon"><i data-lucide="map-pin"></i></span>
+          <div>
+            <small>Location</small>
+            <b>Madrid</b>
+          </div>
+        </article>
+
+        <article class="glass-card">
+          <span class="card-icon"><i data-lucide="gauge"></i></span>
+          <div>
+            <small>Latency</small>
+            <b>32 ms</b>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <i data-lucide="info"></i>
+    <span>Demo visual</span>
+  </div>
+
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
