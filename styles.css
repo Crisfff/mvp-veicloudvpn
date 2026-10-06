@@ -92,6 +92,8 @@ h1{font-size:44px;line-height:1;margin:12px 0 12px;letter-spacing:-.045em}
 .divider::before,.divider::after{content:"";height:1px;background:var(--line);flex:1}
 .secondary-button{width:100%;background:#fff;color:#24262c;border:1px solid var(--line)}
 .secondary-button:hover{background:#fafafa;border-color:#d9dce5}
+.google-login-button{margin-top:14px}
+.google-login-button .fa-google{font-size:18px;color:#111111}
 .legal{margin:auto 0 0;text-align:center;color:#a1a5ae;font-size:11px}
 
 .visual-panel{
