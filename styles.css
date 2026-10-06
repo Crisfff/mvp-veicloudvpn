@@ -120,9 +120,24 @@ h1{font-size:44px;line-height:1;margin:12px 0 12px;letter-spacing:-.045em}
 
 .visual-center{position:relative;z-index:2;display:grid;place-items:center;gap:24px}
 .shield-ring{
+  position:relative;
   width:190px;height:190px;border-radius:50%;display:grid;place-items:center;
-  border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);
-  box-shadow:0 0 0 18px rgba(255,255,255,.03),0 0 0 36px rgba(255,255,255,.02)
+  border:1.5px solid rgba(255,255,255,.28);background:rgba(255,255,255,.055)
+}
+.shield-ring::before,
+.shield-ring::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+}
+.shield-ring::before{
+  inset:-19px;
+  border:1.5px solid rgba(255,255,255,.24);
+}
+.shield-ring::after{
+  inset:-38px;
+  border:1.5px solid rgba(255,255,255,.16);
 }
 .shield-core{
   width:114px;height:114px;border-radius:34px;display:grid;place-items:center;
@@ -161,7 +176,9 @@ h1{font-size:44px;line-height:1;margin:12px 0 12px;letter-spacing:-.045em}
   .shell{grid-template-columns:1fr;min-height:auto;max-width:560px;border-radius:28px}
   .visual-panel{order:-1;min-height:220px;margin:10px 10px 0;padding:20px}
   .visual-center{align-self:center;margin:auto}
-  .shield-ring{width:100px;height:100px;box-shadow:0 0 0 12px rgba(255,255,255,.03)}
+  .shield-ring{width:100px;height:100px}
+  .shield-ring::before{inset:-13px;border-color:rgba(255,255,255,.26)}
+  .shield-ring::after{inset:-26px;border-color:rgba(255,255,255,.17)}
   .shield-core{width:66px;height:66px;border-radius:22px}
   .shield-core svg{width:30px;height:30px}
   .status-copy{display:none}
