@@ -1,0 +1,10 @@
+{
+  "name": "VeiCloud",
+  "short_name": "VeiCloud",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#4F709F",
+  "theme_color": "#4F709F",
+  "icons": []
+}
