@@ -21,6 +21,12 @@ const togglePassword = document.getElementById('togglePassword');
 const forgotButton = document.getElementById('forgotButton');
 const toast = document.getElementById('toast');
 const createAccountTop = document.getElementById('createAccountTop');
+const mobileEmailSheet = document.getElementById('mobileEmailSheet');
+const mobileSheetBackdrop = document.getElementById('mobileSheetBackdrop');
+const mobileSheetClose = document.getElementById('mobileSheetClose');
+const mobileEmailForm = document.getElementById('mobileEmailForm');
+const mobilePassword = document.getElementById('mobilePassword');
+const mobileTogglePassword = document.getElementById('mobileTogglePassword');
 
 function showToast(message){
   toast.querySelector('span').textContent = message;
@@ -29,7 +35,26 @@ function showToast(message){
   showToast.timer = setTimeout(() => toast.classList.remove('show'), 2200);
 }
 
+function openMobileEmailSheet(){
+  mobileEmailSheet?.classList.add('open');
+  mobileEmailSheet?.setAttribute('aria-hidden','false');
+  document.body.classList.add('sheet-open');
+  lucide.createIcons();
+  setTimeout(() => mobileEmailForm?.querySelector('input')?.focus(), 220);
+}
+
+function closeMobileEmailSheet(){
+  mobileEmailSheet?.classList.remove('open');
+  mobileEmailSheet?.setAttribute('aria-hidden','true');
+  document.body.classList.remove('sheet-open');
+}
+
 showEmailForm.addEventListener('click', () => {
+  if (window.matchMedia('(max-width: 759px)').matches) {
+    openMobileEmailSheet();
+    return;
+  }
+
   authOptions.hidden = true;
   emailForm.hidden = false;
   lucide.createIcons();
@@ -65,3 +90,29 @@ document.querySelectorAll('.legal-link').forEach((button) => {
 
 
 createAccountTop?.addEventListener('click', () => showToast('Crear cuenta listo para conectar'));
+
+
+mobileSheetClose?.addEventListener('click', closeMobileEmailSheet);
+mobileSheetBackdrop?.addEventListener('click', closeMobileEmailSheet);
+
+mobileTogglePassword?.addEventListener('click', () => {
+  if (!mobilePassword) return;
+  const reveal = mobilePassword.type === 'password';
+  mobilePassword.type = reveal ? 'text' : 'password';
+  mobileTogglePassword.innerHTML = reveal
+    ? '<i data-lucide="eye-off"></i>'
+    : '<i data-lucide="eye"></i>';
+  mobileTogglePassword.setAttribute('aria-label', reveal ? 'Ocultar contraseña' : 'Mostrar contraseña');
+  lucide.createIcons();
+});
+
+mobileEmailForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  showToast('Inicio de sesión listo para conectar');
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && mobileEmailSheet?.classList.contains('open')) {
+    closeMobileEmailSheet();
+  }
+});
