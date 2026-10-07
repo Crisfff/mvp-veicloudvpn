@@ -1,8 +1,6 @@
 function applyThemeColor(color = '#4F709F') {
   const metas = document.querySelectorAll('meta[name="theme-color"]');
   metas.forEach((meta) => meta.setAttribute('content', color));
-  document.documentElement.style.backgroundColor = color;
-  document.body.style.backgroundColor = color;
 }
 
 applyThemeColor();
