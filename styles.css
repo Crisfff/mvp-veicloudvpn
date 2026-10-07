@@ -342,7 +342,159 @@ button{cursor:pointer}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .toast svg{width:15px;height:15px}
 
+
+.mobile-email-sheet{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  pointer-events:none;
+  visibility:hidden;
+}
+
+.mobile-email-sheet.open{
+  pointer-events:auto;
+  visibility:visible;
+}
+
+.mobile-sheet-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0);
+  transition:background .28s ease;
+}
+
+.mobile-email-sheet.open .mobile-sheet-backdrop{
+  background:rgba(0,0,0,.34);
+}
+
+.mobile-sheet-panel{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  background:#fff;
+  color:#111;
+  border-radius:30px 30px 0 0;
+  padding:10px 22px max(26px,calc(env(safe-area-inset-bottom) + 16px));
+  transform:translateY(105%);
+  transition:transform .32s cubic-bezier(.22,.8,.24,1);
+  box-shadow:0 -18px 50px rgba(0,0,0,.18);
+}
+
+.mobile-email-sheet.open .mobile-sheet-panel{
+  transform:translateY(0);
+}
+
+.sheet-handle{
+  width:42px;
+  height:5px;
+  border-radius:999px;
+  background:#d7d7d7;
+  margin:2px auto 14px;
+}
+
+.sheet-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.sheet-header h2{
+  margin:0;
+  font-size:22px;
+  line-height:1.15;
+  font-weight:700;
+  letter-spacing:-.02em;
+}
+
+.sheet-close{
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:#f1f1f1;
+  color:#222;
+  display:grid;
+  place-items:center;
+}
+
+.sheet-close svg{
+  width:18px;
+  height:18px;
+}
+
+.mobile-sheet-form{
+  display:grid;
+  gap:12px;
+}
+
+.mobile-input-card{
+  min-height:58px;
+  border-radius:18px;
+  background:#f1f1f1;
+  display:flex;
+  align-items:center;
+  padding:0 17px;
+}
+
+.mobile-input-card input{
+  width:100%;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#111;
+  font-size:15px;
+  font-weight:500;
+}
+
+.mobile-input-card input::placeholder{
+  color:#858585;
+  opacity:1;
+}
+
+.password-card{
+  padding-right:10px;
+}
+
+.mobile-eye-button{
+  width:38px;
+  height:38px;
+  border:0;
+  background:transparent;
+  color:#777;
+  display:grid;
+  place-items:center;
+  flex:0 0 auto;
+}
+
+.mobile-eye-button svg{
+  width:19px;
+  height:19px;
+}
+
+.mobile-login-submit{
+  min-height:56px;
+  border:0;
+  border-radius:18px;
+  margin-top:4px;
+  background:#3a3a3a;
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  box-shadow:none;
+  -webkit-appearance:none;
+  appearance:none;
+}
+
+body.sheet-open{
+  overflow:hidden;
+}
+
 @media (min-width:760px){
+  .mobile-email-sheet{display:none !important;}
+
   .signup-header{
     top:24px;
     left:30px;
