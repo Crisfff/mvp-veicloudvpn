@@ -25,6 +25,17 @@ button{cursor:pointer}
   isolation:isolate;
 }
 
+.safari-top-tint{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:12px;
+  background:#4F709F;
+  z-index:9999;
+  pointer-events:none;
+}
+
 .signup-header{
   position:absolute;
   top:max(18px,env(safe-area-inset-top));
