@@ -1,47 +1,52 @@
-const loginForm = document.getElementById('loginForm');
-const password = document.getElementById('password');
-const togglePassword = document.getElementById('togglePassword');
-const toast = document.getElementById('toast');
-
 lucide.createIcons();
 
-function showToast(message) {
+const authOptions = document.getElementById('authOptions');
+const emailForm = document.getElementById('emailForm');
+const showEmailForm = document.getElementById('showEmailForm');
+const backToOptions = document.getElementById('backToOptions');
+const googleButton = document.getElementById('googleButton');
+const password = document.getElementById('password');
+const togglePassword = document.getElementById('togglePassword');
+const forgotButton = document.getElementById('forgotButton');
+const toast = document.getElementById('toast');
+
+function showToast(message){
   toast.querySelector('span').textContent = message;
   toast.classList.add('show');
-  window.clearTimeout(showToast.timer);
-  showToast.timer = window.setTimeout(() => toast.classList.remove('show'), 2200);
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(() => toast.classList.remove('show'), 2200);
 }
 
+showEmailForm.addEventListener('click', () => {
+  authOptions.hidden = true;
+  emailForm.hidden = false;
+  lucide.createIcons();
+  setTimeout(() => emailForm.querySelector('input')?.focus(), 80);
+});
+
+backToOptions.addEventListener('click', () => {
+  emailForm.hidden = true;
+  authOptions.hidden = false;
+});
+
 togglePassword.addEventListener('click', () => {
-  const hidden = password.type === 'password';
-  password.type = hidden ? 'text' : 'password';
-  togglePassword.innerHTML = hidden
+  const reveal = password.type === 'password';
+  password.type = reveal ? 'text' : 'password';
+  togglePassword.innerHTML = reveal
     ? '<i data-lucide="eye-off"></i>'
     : '<i data-lucide="eye"></i>';
-  togglePassword.setAttribute('aria-label', hidden ? 'Ocultar contraseña' : 'Mostrar contraseña');
+  togglePassword.setAttribute('aria-label', reveal ? 'Ocultar contraseña' : 'Mostrar contraseña');
   lucide.createIcons();
 });
 
-loginForm.addEventListener('submit', (event) => {
+emailForm.addEventListener('submit', (event) => {
   event.preventDefault();
-
-  const button = loginForm.querySelector('.primary-button');
-  const label = button.querySelector('.button-label');
-
-  button.classList.add('loading');
-  label.textContent = 'Entrando';
-  button.querySelector('svg')?.setAttribute('data-lucide', 'loader-circle');
-  lucide.createIcons();
-
-  window.setTimeout(() => {
-    button.classList.remove('loading');
-    label.textContent = 'Entrar';
-    button.querySelector('svg')?.setAttribute('data-lucide', 'arrow-right');
-    lucide.createIcons();
-    showToast('Login visual listo');
-  }, 900);
+  showToast('Login listo para conectar');
 });
 
-document.querySelectorAll('[data-soon]').forEach((button) => {
-  button.addEventListener('click', () => showToast('Próximamente'));
+googleButton.addEventListener('click', () => showToast('Google listo para conectar'));
+forgotButton.addEventListener('click', () => showToast('Recuperación de contraseña próximamente'));
+
+document.querySelectorAll('.legal-link').forEach((button) => {
+  button.addEventListener('click', () => showToast(button.textContent.trim()));
 });
