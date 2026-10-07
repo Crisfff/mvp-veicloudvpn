@@ -186,7 +186,7 @@ button{cursor:pointer}
 .email-button{
   color:#fff;
   background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.08);
+  border:0;
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
 }
