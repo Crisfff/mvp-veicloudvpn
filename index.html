@@ -2,33 +2,48 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#111111" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <meta name="description" content="VeiCloud VPN login" />
+  <meta name="description" content="VeiCloud login" />
   <title>VeiCloud · Login</title>
-  <link rel="icon" href="favicon.svg?v=3" type="image/svg+xml" />
+  <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml" />
   <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <link rel="stylesheet" href="styles.css?v=10" />
 </head>
 <body>
-  <main class="shell">
-    <section class="auth-panel">
-      <div class="brand">
-        <span class="brand-mark"><i data-lucide="cloud"></i></span>
-        <span>VeiCloud</span>
+  <main class="login-page">
+    <div class="background-image" aria-hidden="true"></div>
+    <div class="blur-transition" aria-hidden="true"></div>
+    <div class="dark-fade" aria-hidden="true"></div>
+
+    <section class="auth-shell" aria-label="Inicio de sesión">
+      <div class="brand-block">
+        <div class="brand-icon"><i data-lucide="cloud"></i></div>
+        <h1>VeiCloud</h1>
       </div>
 
-      <div class="auth-copy">
-        <span class="eyebrow">ACCOUNT</span>
-        <h1>Bienvenido</h1>
-        
+      <div class="auth-options" id="authOptions">
+        <button class="auth-button google-button" type="button" id="googleButton">
+          <i class="fa-brands fa-google" aria-hidden="true"></i>
+          <span>Continuar con Google</span>
+        </button>
+
+        <button class="auth-button email-button" type="button" id="showEmailForm">
+          <i data-lucide="mail"></i>
+          <span>Continuar con correo</span>
+        </button>
       </div>
 
-      <form class="login-form" id="loginForm">
+      <form class="email-form" id="emailForm" hidden>
+        <div class="form-heading">
+          <button class="back-button" type="button" id="backToOptions" aria-label="Volver">
+            <i data-lucide="arrow-left"></i>
+          </button>
+          <span>Iniciar sesión</span>
+        </div>
+
         <label class="field">
           <span>Correo</span>
           <div class="input-wrap">
@@ -42,97 +57,33 @@
           <div class="input-wrap">
             <i data-lucide="lock-keyhole"></i>
             <input id="password" type="password" name="password" autocomplete="current-password" placeholder="••••••••" minlength="6" required />
-            <button class="icon-button" id="togglePassword" type="button" aria-label="Mostrar contraseña">
+            <button class="eye-button" id="togglePassword" type="button" aria-label="Mostrar contraseña">
               <i data-lucide="eye"></i>
             </button>
           </div>
         </label>
 
-        <div class="form-row">
-          <label class="remember">
-            <input type="checkbox" />
-            <span>Recordarme</span>
-          </label>
-          <button class="text-button" type="button" data-soon>¿Olvidaste tu contraseña?</button>
-        </div>
-
-        <button class="primary-button" type="submit">
-          <span class="button-label">Entrar</span>
+        <button class="submit-button" type="submit">
+          <span>Entrar</span>
           <i data-lucide="arrow-right"></i>
         </button>
 
-        <button class="secondary-button google-login-button" type="button" data-soon>
-          <i class="fa-brands fa-google" aria-hidden="true"></i>
-          Iniciar sesión con Google
-        </button>
+        <button class="forgot-button" type="button" id="forgotButton">¿Olvidaste tu contraseña?</button>
       </form>
 
-      <div class="divider"><span>o</span></div>
-
-      <button class="secondary-button" type="button" data-soon>
-        <i data-lucide="user-plus"></i>
-        Crear cuenta
-      </button>
-
-      <p class="legal">Al iniciar sesión, aceptas los Términos y Condiciones y la Política de Privacidad de VeiCloud.</p>
-    </section>
-
-    <section class="visual-panel" aria-label="VeiCloud">
-      <div class="visual-top">
-        <span class="mini-pill"><span class="dot"></span> Online</span>
-        <span class="mini-icon"><i data-lucide="sparkles"></i></span>
-      </div>
-
-      <div class="orb orb-one"></div>
-      <div class="orb orb-two"></div>
-
-      <div class="visual-center">
-        <div class="shield-ring">
-          <div class="shield-core">
-            <i data-lucide="shield-check"></i>
-          </div>
-        </div>
-
-        <div class="status-copy">
-          <span>PROTECTED</span>
-          <strong>VeiCloud</strong>
-        </div>
-      </div>
-
-      <div class="status-grid">
-        <article class="glass-card">
-          <span class="card-icon"><i data-lucide="wifi"></i></span>
-          <div>
-            <small>Network</small>
-            <b>Private</b>
-          </div>
-        </article>
-
-        <article class="glass-card">
-          <span class="card-icon"><i data-lucide="map-pin"></i></span>
-          <div>
-            <small>Location</small>
-            <b>Madrid</b>
-          </div>
-        </article>
-
-        <article class="glass-card">
-          <span class="card-icon"><i data-lucide="gauge"></i></span>
-          <div>
-            <small>Latency</small>
-            <b>32 ms</b>
-          </div>
-        </article>
+      <div class="legal-links">
+        <button type="button" class="legal-link">Política de privacidad</button>
+        <button type="button" class="legal-link">Términos de servicio</button>
       </div>
     </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      <i data-lucide="info"></i>
+      <span></span>
+    </div>
   </main>
 
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    <i data-lucide="info"></i>
-    <span>Demo visual</span>
-  </div>
-
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-  <script src="app.js?v=9"></script>
+  <script src="app.js?v=10"></script>
 </body>
 </html>
