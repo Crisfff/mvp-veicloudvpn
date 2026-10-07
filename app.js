@@ -9,6 +9,7 @@ const password = document.getElementById('password');
 const togglePassword = document.getElementById('togglePassword');
 const forgotButton = document.getElementById('forgotButton');
 const toast = document.getElementById('toast');
+const createAccountTop = document.getElementById('createAccountTop');
 
 function showToast(message){
   toast.querySelector('span').textContent = message;
@@ -50,3 +51,6 @@ forgotButton.addEventListener('click', () => showToast('Recuperación de contras
 document.querySelectorAll('.legal-link').forEach((button) => {
   button.addEventListener('click', () => showToast(button.textContent.trim()));
 });
+
+
+createAccountTop?.addEventListener('click', () => showToast('Crear cuenta listo para conectar'));
