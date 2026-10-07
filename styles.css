@@ -25,6 +25,39 @@ button{cursor:pointer}
   isolation:isolate;
 }
 
+.signup-header{
+  position:absolute;
+  top:max(18px,env(safe-area-inset-top));
+  left:24px;
+  right:24px;
+  z-index:8;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  color:#fff;
+  font-size:13px;
+  font-weight:650;
+  text-shadow:0 2px 14px rgba(0,0,0,.42);
+}
+
+.create-account-top{
+  min-height:40px;
+  padding:0 16px;
+  border:0;
+  border-radius:999px;
+  background:#fff;
+  color:#111;
+  font-size:13px;
+  font-weight:800;
+  box-shadow:0 10px 26px rgba(0,0,0,.16);
+  transition:transform .16s ease,opacity .16s ease;
+}
+
+.create-account-top:active{
+  transform:scale(.97);
+}
+
 .background-image{
   position:absolute;
   inset:0;
@@ -295,6 +328,18 @@ button{cursor:pointer}
 .toast svg{width:15px;height:15px}
 
 @media (min-width:760px){
+  .signup-header{
+    top:24px;
+    left:30px;
+    right:30px;
+    font-size:14px;
+  }
+
+  .create-account-top{
+    min-height:42px;
+    padding:0 18px;
+  }
+
   body{
     display:grid;
     place-items:center;
