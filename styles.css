@@ -7,7 +7,7 @@
 }
 
 *{box-sizing:border-box}
-html{margin:0;min-height:100%;background:#4F709F} body{margin:0;min-height:100%;background:#4F709F}
+html{margin:0;min-height:100%;background:#111111} body{margin:0;min-height:100%;background:#111111}
 body{
   min-height:100svh;
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
