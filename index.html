@@ -115,6 +115,43 @@
       </section>
     </div>
 
+    <div class="mobile-email-sheet" id="mobileSignupSheet" aria-hidden="true">
+      <div class="mobile-sheet-backdrop" id="mobileSignupBackdrop"></div>
+
+      <section class="mobile-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="mobileSignupTitle">
+        <div class="sheet-handle" aria-hidden="true"></div>
+
+        <div class="sheet-header">
+          <h2 id="mobileSignupTitle">Crear cuenta</h2>
+          <button class="sheet-close" id="mobileSignupClose" type="button" aria-label="Cerrar">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+
+        <form class="mobile-sheet-form" id="mobileSignupForm">
+          <label class="mobile-input-card">
+            <input type="email" name="mobileSignupEmail" autocomplete="email" placeholder="Correo electrónico" required />
+          </label>
+
+          <label class="mobile-input-card password-card">
+            <input id="mobileSignupPassword" type="password" name="mobileSignupPassword" autocomplete="new-password" placeholder="Contraseña" minlength="6" required />
+            <button class="mobile-eye-button" id="mobileToggleSignupPassword" type="button" aria-label="Mostrar contraseña">
+              <i data-lucide="eye"></i>
+            </button>
+          </label>
+
+          <label class="mobile-input-card password-card">
+            <input id="mobileSignupRepeatPassword" type="password" name="mobileSignupRepeatPassword" autocomplete="new-password" placeholder="Repetir contraseña" minlength="6" required />
+            <button class="mobile-eye-button" id="mobileToggleSignupRepeatPassword" type="button" aria-label="Mostrar contraseña">
+              <i data-lucide="eye"></i>
+            </button>
+          </label>
+
+          <button class="mobile-login-submit" type="submit">Crear cuenta</button>
+        </form>
+      </section>
+    </div>
+
     <div class="toast" id="toast" role="status" aria-live="polite">
       <i data-lucide="info"></i>
       <span></span>
@@ -123,6 +160,6 @@
 
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-  <script src="app-v21.js"></script>
+  <script src="app-v22.js"></script>
 </body>
 </html>
