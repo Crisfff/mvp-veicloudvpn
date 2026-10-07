@@ -186,7 +186,11 @@ button{cursor:pointer}
 .email-button{
   color:#fff;
   background:rgba(255,255,255,.12);
-  border:0;
+  border:none !important;
+  outline:none !important;
+  box-shadow:none !important;
+  -webkit-appearance:none;
+  appearance:none;
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
 }
@@ -393,4 +397,19 @@ button{cursor:pointer}
   }
 
   .brand-block{margin-bottom:30px}
+}
+
+
+.auth-button{
+  border:none !important;
+  outline:none !important;
+  box-shadow:none;
+  -webkit-appearance:none;
+  appearance:none;
+}
+
+.auth-button:focus,
+.auth-button:focus-visible{
+  outline:none !important;
+  box-shadow:none !important;
 }
