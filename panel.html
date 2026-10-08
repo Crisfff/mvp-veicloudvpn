@@ -10,7 +10,7 @@
   <meta name="description" content="Panel VeiCloud" />
   <title>VeiCloud · Panel</title>
   <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml" />
-  <link rel="stylesheet" href="panel-v4.css" />
+  <link rel="stylesheet" href="panel-v5.css" />
   </head>
 <body>
   <div class="safari-top-tint" aria-hidden="true"></div>
@@ -24,6 +24,64 @@
 
       <img class="panel-logo" src="assets/veicloud-logo.webp?v=2" alt="VeiCloud" />
     </header>
+
+    <section class="stories-tray" aria-label="Historias de VeiCloud">
+      <button class="story-card" id="openStory" type="button" aria-label="Abrir historias: Cómo te protege VeiCloud">
+        <div class="story-card-top">
+          <img src="assets/veicloud-logo.webp?v=2" alt="" class="story-card-logo" />
+          <span class="story-card-count">2</span>
+        </div>
+        <div class="story-card-copy">
+          <strong>Cómo te protege VeiCloud</strong>
+          <span>Privacidad, rutas y conexión</span>
+        </div>
+      </button>
+    </section>
   </main>
+
+  <div class="story-viewer" id="storyViewer" aria-hidden="true">
+    <div class="story-progress" aria-hidden="true">
+      <div class="story-progress-track"><span class="story-progress-fill" data-progress="0"></span></div>
+      <div class="story-progress-track"><span class="story-progress-fill" data-progress="1"></span></div>
+    </div>
+
+    <button class="story-close" id="storyClose" type="button" aria-label="Cerrar historias">×</button>
+
+    <article class="story-slide story-slide-one active" data-story="0">
+      <div class="story-orb story-orb-a"></div>
+      <div class="story-orb story-orb-b"></div>
+      <div class="story-copy">
+        <span class="story-eyebrow">PRIVACIDAD</span>
+        <h1>Privacidad que trabaja en silencio.</h1>
+        <p>Cuando te conectas a VeiCloud, tu tráfico viaja a través de un túnel cifrado diseñado para reducir la exposición de tu actividad, especialmente en redes públicas o desconocidas.</p>
+      </div>
+
+      <div class="story-bottom">
+        <p class="story-note">Una conexión protegida no debería sentirse diferente. Solo más segura.</p>
+        <button class="story-cta" type="button" data-story-action="explore">Explorar VeiCloud <span>›</span></button>
+      </div>
+    </article>
+
+    <article class="story-slide story-slide-two" data-story="1">
+      <div class="route-grid" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="story-copy">
+        <span class="story-eyebrow">INFRAESTRUCTURA</span>
+        <h1>La ruta correcta cambia la conexión.</h1>
+        <p>VeiCloud puede dirigir tu tráfico a través de infraestructura optimizada según la ubicación y el tipo de conexión, buscando estabilidad, menor latencia y acceso consistente a tus servicios.</p>
+      </div>
+
+      <div class="story-bottom">
+        <p class="story-note">Más que cambiar tu IP: mejorar cómo viajan tus datos.</p>
+        <button class="story-cta" type="button" data-story-action="infrastructure">Ver la infraestructura <span>›</span></button>
+      </div>
+    </article>
+
+    <button class="story-tap story-tap-left" id="storyPrev" type="button" aria-label="Historia anterior"></button>
+    <button class="story-tap story-tap-right" id="storyNext" type="button" aria-label="Historia siguiente"></button>
+  </div>
+
+  <script src="panel-v1.js"></script>
 </body>
 </html>
