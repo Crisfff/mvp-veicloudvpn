@@ -3,24 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#242424" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#242424" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#242424" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#ffffff" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="description" content="Panel VeiCloud" />
   <title>VeiCloud · Panel</title>
   <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml" />
-  <link rel="stylesheet" href="panel-v3.css" />
-  <style>html,body{background:#242424}</style>
-  <script>
-    (() => {
-      const color = '#242424';
-      document.querySelectorAll('meta[name="theme-color"]').forEach(meta => meta.setAttribute('content', color));
-      document.documentElement.style.backgroundColor = color;
-    })();
-  </script>
-</head>
+  <link rel="stylesheet" href="panel-v4.css" />
+  </head>
 <body>
+  <div class="safari-top-tint" aria-hidden="true"></div>
   <main class="panel-page">
     <header class="panel-header">
       <button class="menu-button" type="button" aria-label="Abrir menú">
