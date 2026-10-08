@@ -1,0 +1,81 @@
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:#fff;
+}
+
+body{
+  min-height:100svh;
+  font-family:"Manrope",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:#111;
+}
+
+button{font:inherit}
+
+.panel-page{
+  min-height:100svh;
+  background:#fff;
+}
+
+.panel-header{
+  width:100%;
+  height:calc(70px + env(safe-area-inset-top));
+  padding:
+    calc(env(safe-area-inset-top) + 14px)
+    20px
+    12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.menu-button{
+  width:42px;
+  height:42px;
+  padding:0;
+  border:0;
+  border-radius:14px;
+  background:#f2f2f2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  cursor:pointer;
+  -webkit-appearance:none;
+  appearance:none;
+}
+
+.menu-button span{
+  width:17px;
+  height:1.6px;
+  border-radius:999px;
+  background:#171717;
+  display:block;
+}
+
+.panel-logo{
+  width:44px;
+  height:44px;
+  object-fit:contain;
+  display:block;
+}
+
+@media (min-width:760px){
+  .panel-header{
+    height:78px;
+    padding:18px 28px;
+  }
+
+  .menu-button{
+    width:44px;
+    height:44px;
+  }
+
+  .panel-logo{
+    width:46px;
+    height:46px;
+  }
+}
