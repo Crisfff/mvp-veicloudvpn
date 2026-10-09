@@ -10,7 +10,7 @@
   <meta name="description" content="Panel VeiCloud" />
   <title>VeiCloud · Panel</title>
   <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml" />
-  <link rel="stylesheet" href="panel-v12.css" />
+  <link rel="stylesheet" href="panel-v13.css" />
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   </head>
 <body>
@@ -44,6 +44,22 @@
           <span>Privacidad, rutas y conexión</span>
         </div>
       </button>
+
+      <button class="story-card story-card-desert" id="openPublicWifiStory" type="button" aria-label="Abrir historias: Redes públicas">
+        <div class="desert-card-art" aria-hidden="true">
+          <span class="desert-sun"></span>
+          <span class="desert-dune desert-dune-one"></span>
+          <span class="desert-dune desert-dune-two"></span>
+          <span class="desert-wifi">⌁</span>
+        </div>
+        <div class="story-card-top">
+          <span class="story-card-count">2</span>
+        </div>
+        <div class="story-card-copy">
+          <strong>Redes públicas</strong>
+          <span>Wi‑Fi público y seguridad</span>
+        </div>
+      </button>
     </section>
   </main>
 
@@ -53,7 +69,7 @@
       <div class="story-progress-track"><span class="story-progress-fill" data-progress="1"></span></div>
     </div>
 
-    <button class="story-close" id="storyClose" type="button" aria-label="Cerrar historias">×</button>
+    <button class="story-close" id="storyClose" type="button" data-story-close aria-label="Cerrar historias">×</button>
 
     <article class="story-slide story-slide-one active" data-story="0">
       <div class="story-orb story-orb-a"></div>
@@ -86,10 +102,59 @@
       </div>
     </article>
 
-    <button class="story-tap story-tap-left" id="storyPrev" type="button" aria-label="Historia anterior"></button>
-    <button class="story-tap story-tap-right" id="storyNext" type="button" aria-label="Historia siguiente"></button>
+    <button class="story-tap story-tap-left" id="storyPrev" type="button" data-story-prev aria-label="Historia anterior"></button>
+    <button class="story-tap story-tap-right" id="storyNext" type="button" data-story-next aria-label="Historia siguiente"></button>
   </div>
 
-  <script src="panel-v1.js"></script>
+  <div class="story-viewer desert-story-viewer" id="publicWifiViewer" aria-hidden="true">
+    <div class="story-progress" aria-hidden="true">
+      <div class="story-progress-track"><span class="story-progress-fill" data-progress="0"></span></div>
+      <div class="story-progress-track"><span class="story-progress-fill" data-progress="1"></span></div>
+    </div>
+
+    <button class="story-close desert-close" type="button" data-story-close aria-label="Cerrar historias">×</button>
+
+    <article class="story-slide desert-story-slide active" data-story="0">
+      <div class="desert-scene" aria-hidden="true">
+        <div class="desert-scene-sun"></div>
+        <div class="desert-scene-dune dune-back"></div>
+        <div class="desert-scene-dune dune-front"></div>
+        <div class="wifi-rings"><span></span><span></span><span></span></div>
+      </div>
+
+      <div class="story-copy">
+        <span class="story-eyebrow">SEGURIDAD</span>
+        <h1>Gratis no siempre significa seguro.</h1>
+        <p>Aeropuertos, hoteles, cafeterías y otras redes públicas pueden compartir infraestructura con decenas o incluso cientos de dispositivos al mismo tiempo.</p>
+      </div>
+
+      <div class="story-bottom">
+        <p class="story-note">En una red que no controlas, reducir la exposición importa.</p>
+      </div>
+    </article>
+
+    <article class="story-slide desert-story-slide" data-story="1">
+      <div class="desert-scene desert-scene-two" aria-hidden="true">
+        <div class="desert-device"></div>
+        <div class="desert-shield"></div>
+        <div class="wifi-rings wifi-rings-two"><span></span><span></span><span></span></div>
+      </div>
+
+      <div class="story-copy">
+        <span class="story-eyebrow">PROTECCIÓN</span>
+        <h1>Conéctate sin cambiar tus hábitos.</h1>
+        <p>VeiCloud VPN protege el tráfico entre tu dispositivo y el servidor VPN mientras utilizas redes Wi‑Fi públicas o desconocidas.</p>
+      </div>
+
+      <div class="story-bottom">
+        <p class="story-note">La red puede ser pública. Tu conexión no tiene por qué sentirse así.</p>
+      </div>
+    </article>
+
+    <button class="story-tap story-tap-left" type="button" data-story-prev aria-label="Historia anterior"></button>
+    <button class="story-tap story-tap-right" type="button" data-story-next aria-label="Historia siguiente"></button>
+  </div>
+
+  <script src="panel-v2.js"></script>
 </body>
 </html>
