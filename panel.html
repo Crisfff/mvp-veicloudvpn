@@ -10,7 +10,7 @@
   <meta name="description" content="Panel VeiCloud" />
   <title>VeiCloud · Panel</title>
   <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml" />
-  <link rel="stylesheet" href="panel-v17.css" />
+  <link rel="stylesheet" href="panel-v18.css" />
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   </head>
 <body>
@@ -70,6 +70,21 @@
         <div class="story-card-copy">
           <strong>Streaming</strong>
           <span>Calidad, rutas y estabilidad</span>
+        </div>
+      </button>
+
+      <button class="story-card story-card-gaming" id="openGamingStory" type="button" aria-label="Abrir historia: Gaming">
+        <div class="gaming-card-art" aria-hidden="true">
+          <span class="gaming-controller"></span>
+          <span class="gaming-pulse gaming-pulse-one"></span>
+          <span class="gaming-pulse gaming-pulse-two"></span>
+        </div>
+        <div class="story-card-top">
+          <span class="story-card-count">1</span>
+        </div>
+        <div class="story-card-copy">
+          <strong>Gaming</strong>
+          <span>Estabilidad y consistencia</span>
         </div>
       </button>
     </section>
@@ -235,6 +250,44 @@
     <button class="story-tap story-tap-right" type="button" data-story-next aria-label="Historia siguiente"></button>
   </div>
 
-  <script src="panel-v4.js"></script>
+  <div class="story-viewer gaming-story-viewer" id="gamingViewer" aria-hidden="true">
+    <div class="story-progress" aria-hidden="true">
+      <div class="story-progress-track"><span class="story-progress-fill" data-progress="0"></span></div>
+    </div>
+
+    <button class="story-close gaming-close" type="button" data-story-close aria-label="Cerrar historia">×</button>
+
+    <article class="story-slide gaming-story-slide active" data-story="0">
+      <div class="gaming-scene" aria-hidden="true">
+        <div class="gaming-orbit">
+          <span class="gaming-node node-one"></span>
+          <span class="gaming-node node-two"></span>
+          <span class="gaming-node node-three"></span>
+        </div>
+        <div class="gaming-latency-line"></div>
+        <div class="gaming-controller-large">
+          <span class="stick stick-left"></span>
+          <span class="stick stick-right"></span>
+          <span class="button-a"></span>
+          <span class="button-b"></span>
+        </div>
+      </div>
+
+      <div class="story-copy">
+        <span class="story-eyebrow">GAMING</span>
+        <h1>La estabilidad también se juega.</h1>
+        <p>En partidas online, no todo depende de tener el ping más bajo. La consistencia de la ruta, el jitter y la pérdida de paquetes pueden cambiar cómo se siente cada movimiento. VeiCloud VPN busca mantener una conexión estable entre tu dispositivo y la ruta elegida.</p>
+      </div>
+
+      <div class="story-bottom">
+        <p class="story-note">Menos variaciones bruscas. Más consistencia durante la partida.</p>
+      </div>
+    </article>
+
+    <button class="story-tap story-tap-left" type="button" data-story-prev aria-label="Historia anterior"></button>
+    <button class="story-tap story-tap-right" type="button" data-story-next aria-label="Cerrar historia"></button>
+  </div>
+
+  <script src="panel-v5.js"></script>
 </body>
 </html>
