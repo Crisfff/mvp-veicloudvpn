@@ -10,7 +10,7 @@
   <meta name="description" content="Panel VeiCloud" />
   <title>VeiCloud · Panel</title>
   <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml" />
-  <link rel="stylesheet" href="panel-v18.css" />
+  <link rel="stylesheet" href="panel-v19.css" />
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   </head>
 <body>
@@ -33,7 +33,7 @@
     </header>
 
     <section class="stories-tray" aria-label="Historias de VeiCloud">
-      <button class="story-card" id="openStory" type="button" aria-label="Abrir historias: Cómo te protege VeiCloud">
+      <button class="story-card" id="openStory" data-viewer="storyViewer" type="button" aria-label="Abrir historias: Cómo te protege VeiCloud">
         <img src="assets/veicloud-story-cover.webp?v=1" alt="" class="story-card-cover" aria-hidden="true" />
         <div class="story-card-shade" aria-hidden="true"></div>
         <div class="story-card-top">
@@ -45,7 +45,7 @@
         </div>
       </button>
 
-      <button class="story-card story-card-desert" id="openPublicWifiStory" type="button" aria-label="Abrir historias: Redes públicas">
+      <button class="story-card story-card-desert" id="openPublicWifiStory" data-viewer="publicWifiViewer" type="button" aria-label="Abrir historias: Redes públicas">
         <div class="desert-card-art" aria-hidden="true">
           <span class="desert-sun"></span>
           <span class="desert-dune desert-dune-one"></span>
@@ -61,7 +61,7 @@
         </div>
       </button>
 
-      <button class="story-card story-card-streaming" id="openStreamingStory" type="button" aria-label="Abrir historias: Streaming">
+      <button class="story-card story-card-streaming" id="openStreamingStory" data-viewer="streamingViewer" type="button" aria-label="Abrir historias: Streaming">
         <img src="assets/story-streaming-card.webp?v=1" alt="" class="story-card-cover streaming-card-cover" aria-hidden="true" />
         <div class="story-card-shade streaming-card-shade" aria-hidden="true"></div>
         <div class="story-card-top">
@@ -73,7 +73,7 @@
         </div>
       </button>
 
-      <button class="story-card story-card-gaming" id="openGamingStory" type="button" aria-label="Abrir historia: Gaming">
+      <button class="story-card story-card-gaming" id="openGamingStory" data-viewer="gamingViewer" type="button" aria-label="Abrir historia: Gaming">
         <div class="gaming-card-art" aria-hidden="true">
           <span class="gaming-controller"></span>
           <span class="gaming-pulse gaming-pulse-one"></span>
@@ -288,6 +288,6 @@
     <button class="story-tap story-tap-right" type="button" data-story-next aria-label="Cerrar historia"></button>
   </div>
 
-  <script src="panel-v5.js"></script>
+  <script src="panel-v6.js"></script>
 </body>
 </html>
