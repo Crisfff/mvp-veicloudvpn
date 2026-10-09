@@ -10,7 +10,7 @@
   <meta name="description" content="Panel VeiCloud" />
   <title>VeiCloud · Panel</title>
   <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml" />
-  <link rel="stylesheet" href="panel-v14.css" />
+  <link rel="stylesheet" href="panel-v15.css" />
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   </head>
 <body>
@@ -58,6 +58,21 @@
         <div class="story-card-copy">
           <strong>Redes públicas</strong>
           <span>Wi‑Fi público y seguridad</span>
+        </div>
+      </button>
+
+      <button class="story-card story-card-streaming" id="openStreamingStory" type="button" aria-label="Abrir historias: Streaming">
+        <div class="stream-card-art" aria-hidden="true">
+          <span class="stream-screen"></span>
+          <span class="stream-play"></span>
+          <span class="stream-glow"></span>
+        </div>
+        <div class="story-card-top">
+          <span class="story-card-count">3</span>
+        </div>
+        <div class="story-card-copy">
+          <strong>Streaming</strong>
+          <span>Calidad, rutas y estabilidad</span>
         </div>
       </button>
     </section>
@@ -155,6 +170,74 @@
     <button class="story-tap story-tap-right" type="button" data-story-next aria-label="Historia siguiente"></button>
   </div>
 
-  <script src="panel-v2.js"></script>
+  <div class="story-viewer streaming-story-viewer" id="streamingViewer" aria-hidden="true">
+    <div class="story-progress" aria-hidden="true">
+      <div class="story-progress-track"><span class="story-progress-fill" data-progress="0"></span></div>
+      <div class="story-progress-track"><span class="story-progress-fill" data-progress="1"></span></div>
+      <div class="story-progress-track"><span class="story-progress-fill" data-progress="2"></span></div>
+    </div>
+
+    <button class="story-close streaming-close" type="button" data-story-close aria-label="Cerrar historias">×</button>
+
+    <article class="story-slide streaming-story-slide active" data-story="0">
+      <div class="streaming-scene streaming-scene-one" aria-hidden="true">
+        <div class="cinema-screen"><span></span></div>
+        <div class="signal-lines"><span></span><span></span><span></span></div>
+      </div>
+
+      <div class="story-copy">
+        <span class="story-eyebrow">STREAMING</span>
+        <h1>Ver más. Esperar menos.</h1>
+        <p>Una sesión de streaming depende de mucho más que la velocidad contratada. La ruta de red, la distancia al servicio y la estabilidad de la conexión también influyen en la experiencia.</p>
+      </div>
+
+      <div class="story-bottom">
+        <p class="story-note">Una buena conexión no solo descarga rápido. También mantiene el flujo estable.</p>
+      </div>
+    </article>
+
+    <article class="story-slide streaming-story-slide" data-story="1">
+      <div class="streaming-scene streaming-scene-two" aria-hidden="true">
+        <div class="streaming-globe"></div>
+        <div class="streaming-node node-a"></div>
+        <div class="streaming-node node-b"></div>
+        <div class="streaming-node node-c"></div>
+        <div class="streaming-route route-a"></div>
+        <div class="streaming-route route-b"></div>
+      </div>
+
+      <div class="story-copy">
+        <span class="story-eyebrow">RUTAS</span>
+        <h1>El contenido puede estar más lejos de lo que parece.</h1>
+        <p>Los servicios de streaming distribuyen contenido desde distintas regiones e infraestructuras. La ruta que siguen tus datos puede afectar tiempos de carga, estabilidad y respuesta.</p>
+      </div>
+
+      <div class="story-bottom">
+        <p class="story-note">La distancia importa, pero la ruta también.</p>
+      </div>
+    </article>
+
+    <article class="story-slide streaming-story-slide" data-story="2">
+      <div class="streaming-scene streaming-scene-three" aria-hidden="true">
+        <div class="stream-buffer-ring"><span></span></div>
+        <div class="stream-bars"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+
+      <div class="story-copy">
+        <span class="story-eyebrow">ESTABILIDAD</span>
+        <h1>Una película no debería sentirse como una prueba de paciencia.</h1>
+        <p>Una conexión consistente ayuda a reducir cambios bruscos de calidad y pausas inesperadas durante la reproducción, especialmente cuando la red está bajo carga.</p>
+      </div>
+
+      <div class="story-bottom">
+        <p class="story-note">Streaming fluido significa mantener la conexión estable de principio a fin.</p>
+      </div>
+    </article>
+
+    <button class="story-tap story-tap-left" type="button" data-story-prev aria-label="Historia anterior"></button>
+    <button class="story-tap story-tap-right" type="button" data-story-next aria-label="Historia siguiente"></button>
+  </div>
+
+  <script src="panel-v3.js"></script>
 </body>
 </html>
