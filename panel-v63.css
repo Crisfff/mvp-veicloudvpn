@@ -4766,3 +4766,17 @@ body.panel-drawer-open{
   background:#242424 !important;
   color-scheme:dark;
 }
+
+
+/* v7: Keep Safari bottom toolbar naturally translucent when menu closes.
+   The drawer itself remains fixed, edge-to-edge and dark. Do not paint
+   the document root dark, because iOS Safari can retain that toolbar tint. */
+html, body,
+html.panel-drawer-open, body.panel-drawer-open,
+html:not(.panel-drawer-open), body:not(.panel-drawer-open) {
+  background: #fff !important;
+  color-scheme: light !important;
+}
+.panel-side-drawer.is-open {
+  background: #242424 !important;
+}
