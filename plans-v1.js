@@ -7,7 +7,8 @@
   const plansMenuToggle = document.getElementById('vcPlansMenuToggle');
   const drawer = document.getElementById('panelSideDrawer');
   const drawerBackdrop = document.getElementById('panelDrawerBackdrop');
-  const homeLink = document.querySelector('.panel-side-nav-button[aria-current="page"]');
+  const homeLink = document.getElementById('panelHomeButton');
+  const sideNav = drawer?.querySelector('.panel-side-nav');
   const cycleTrigger = document.getElementById('vcPlansPeriodTrigger');
   const cycleText = document.getElementById('vcPlansPeriodText');
   const cycleMenu = document.getElementById('vcPlansPeriodMenu');
@@ -39,11 +40,36 @@
   // that page, mount the same drawer on <body> so its menu remains functional.
   let openedByNavigation = false;
 
+  function updateNavigationSelection(){
+    const plansActive = document.body.classList.contains('vc-plans-open');
+    const activeLink = plansActive ? openLink : homeLink;
+    if (!homeLink || !sideNav) return;
+
+    homeLink.classList.toggle('is-active', !plansActive);
+    homeLink.classList.toggle('is-off', plansActive);
+    openLink.classList.toggle('is-active', plansActive);
+    openLink.classList.toggle('is-off', !plansActive);
+
+    if (plansActive) {
+      homeLink.removeAttribute('aria-current');
+      openLink.setAttribute('aria-current', 'page');
+    } else {
+      openLink.removeAttribute('aria-current');
+      homeLink.setAttribute('aria-current', 'page');
+    }
+
+    // Animate the same selection pill between Home and Plans.
+    sideNav.style.setProperty('--vc-active-nav-y', activeLink.offsetTop + 'px');
+    sideNav.style.setProperty('--vc-active-nav-height', activeLink.offsetHeight + 'px');
+    sideNav.classList.add('vc-active-nav-ready');
+  }
+
   function setPlansMenuChrome(){
     const open = drawer.classList.contains('is-open');
     plansMenuToggle.classList.toggle('is-open',open);
     plansMenuToggle.setAttribute('aria-expanded', String(open));
     plansMenuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    updateNavigationSelection();
   }
   const drawerObserver = new MutationObserver(setPlansMenuChrome);
   drawerObserver.observe(drawer,{attributes:true,attributeFilter:['class']});
@@ -106,6 +132,7 @@
       mountDrawerInPlans();
       page.hidden = false;
       document.body.classList.add('vc-plans-open');
+      updateNavigationSelection();
       panel.setAttribute('aria-hidden','true');
       window.scrollTo(0,0);
       render();
@@ -114,6 +141,7 @@
       closeMenu();
       page.hidden = true;
       document.body.classList.remove('vc-plans-open');
+      updateNavigationSelection();
       panel.removeAttribute('aria-hidden');
       restoreDrawerInPanel();
       window.scrollTo(0,previousScroll);
@@ -143,9 +171,12 @@
     }
   });
   homeLink?.addEventListener('click', () => {
-    if (!document.body.classList.contains('vc-plans-open')) return;
-    history.replaceState(null,'',location.pathname + location.search);
-    showPlansView(false);
+    if (document.body.classList.contains('vc-plans-open')) {
+      history.replaceState(null,'',location.pathname + location.search);
+      showPlansView(false);
+    } else if (drawer.classList.contains('is-open') && typeof setPanelDrawer === 'function') {
+      setPanelDrawer(false);
+    }
   });
   window.addEventListener('popstate',syncRoute);
   window.addEventListener('hashchange',syncRoute);
@@ -198,4 +229,7 @@
   }
   render();
   syncRoute();
+  updateNavigationSelection();
+  window.addEventListener('resize', updateNavigationSelection);
+  document.fonts?.ready?.then(updateNavigationSelection);
 })();
