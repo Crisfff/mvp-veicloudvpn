@@ -4839,3 +4839,11 @@ body.story-open #panelMenuToggle {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+
+/* v12: Disable accidental double-tap zoom on iOS without blocking scrolling.
+   manipulation keeps native panning and pinch accessibility. */
+html, body, .panel-page, .stories-tray, .story-card,
+.panel-page button, .story-viewer {
+  touch-action: manipulation !important;
+}
