@@ -68,6 +68,11 @@
     plansMenuToggle.classList.toggle('is-open',open);
     plansMenuToggle.setAttribute('aria-expanded', String(open));
     plansMenuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    // Includes closing via Escape, backdrop and navigation from either view.
+    if (!open) {
+      page.classList.remove('vc-plans-drawer-cover');
+      if (fixedFooter) fixedFooter.hidden = false;
+    }
     updateNavigationSelection();
   }
   const drawerObserver = new MutationObserver(setPlansMenuChrome);
@@ -151,11 +156,29 @@
     openPlans();
   });
   activateLink?.addEventListener('click',openPlans);
-  plansMenuToggle.addEventListener('click', () => {
-    if (typeof setPanelDrawer === 'function') {
-      setPanelDrawer(!drawer.classList.contains('is-open'));
-      setPlansMenuChrome();
+  // Safari 26 can latch the toolbar tint from a fixed bottom element.
+  // Remove our light checkout footer from layout *before* showing the drawer,
+  // then restore it only after the overlay has closed.
+  function setPlansDrawer(open){
+    if (typeof setPanelDrawer !== 'function') return;
+    if (open) {
+      page.classList.add('vc-plans-drawer-cover');
+      if (fixedFooter) {
+        fixedFooter.hidden = true;
+        // Force Safari to unregister the fixed bar before drawer painting.
+        void fixedFooter.offsetHeight;
+      }
     }
+    setPanelDrawer(open);
+    if (!open) {
+      page.classList.remove('vc-plans-drawer-cover');
+      if (fixedFooter) fixedFooter.hidden = false;
+    }
+    setPlansMenuChrome();
+  }
+
+  plansMenuToggle.addEventListener('click', () => {
+    setPlansDrawer(!drawer.classList.contains('is-open'));
   });
   homeLink?.addEventListener('click', () => {
     if (document.body.classList.contains('vc-plans-open')) {
