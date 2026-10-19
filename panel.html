@@ -10,7 +10,7 @@
   <meta name="description" content="Panel VeiCloud" />
   <title>VeiCloud · Panel</title>
   <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml" />
-  <link rel="stylesheet" href="panel-v33.css" />
+  <link rel="stylesheet" href="panel-v34.css" />
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   </head>
 <body>
@@ -107,16 +107,24 @@
     </section>
 
     <section class="account-cards" aria-label="Cuenta VeiCloud">
-      <button class="account-card plan-card" type="button" id="planCard">
+      <article class="account-card plan-card" id="planCard">
         <div class="account-card-icon plan-icon">
           <iconify-icon icon="lucide:crown" aria-hidden="true"></iconify-icon>
         </div>
-        <div class="account-card-copy">
+
+        <div class="account-card-copy plan-card-copy">
           <strong>Mi plan</strong>
-          <span>Consulta tu suscripción</span>
+          <span class="plan-name">Free</span>
         </div>
-        <iconify-icon class="account-card-arrow" icon="lucide:chevron-right" aria-hidden="true"></iconify-icon>
-      </button>
+
+        <button class="plan-info-button" type="button" aria-label="Información del plan">
+          <iconify-icon icon="lucide:info" aria-hidden="true"></iconify-icon>
+        </button>
+
+        <button class="activate-plan-button" type="button">
+          Activar suscripción
+        </button>
+      </article>
 
       <button class="account-card devices-card" type="button" id="devicesCard">
         <div class="account-card-icon devices-icon">
