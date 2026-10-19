@@ -357,9 +357,8 @@ body.vc-plans-open.panel-drawer-open .vc-plans-footer {
   backdrop-filter:none !important;
   box-shadow:none !important;
 }
-body.vc-plans-open.panel-drawer-open .vc-plans-header {
-  background:#242424 !important;
-}
+/* Keep the Plans header transparent over the open drawer so its
+   VeiCloud logo remains visible behind the hamburger/X control. */
 /* Keep the top heading out of the way, leaving the X to close the drawer. */
 body.vc-plans-open.panel-drawer-open .vc-plans-menu-button {
   pointer-events:auto !important;
