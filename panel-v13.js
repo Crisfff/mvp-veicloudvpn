@@ -9,29 +9,17 @@ function setThemeColor(color){
 }
 
 function restorePanelChrome(){
+  // Restore the document AND the browser's bottom navigation bar.
   document.documentElement.classList.remove('panel-drawer-open');
   document.body.classList.remove('panel-drawer-open');
-
   document.documentElement.style.setProperty('background-color', '#ffffff', 'important');
   document.body.style.setProperty('background-color', '#ffffff', 'important');
   document.documentElement.style.colorScheme = 'light';
   document.body.style.colorScheme = 'light';
+  setThemeColor('#ffffff');
 
-  themeMetas.forEach(meta => meta.setAttribute('content', '#fefefe'));
-
-  requestAnimationFrame(() => {
-    themeMetas.forEach(meta => meta.setAttribute('content', '#ffffff'));
-  });
-
-  setTimeout(() => {
-    themeMetas.forEach(meta => meta.setAttribute('content', '#ffffff'));
-    document.documentElement.style.setProperty('background-color', '#ffffff', 'important');
-    document.body.style.setProperty('background-color', '#ffffff', 'important');
-  }, 120);
-
-  if (safariTopTint) {
-    safariTopTint.style.background = '#242424';
-  }
+  // Only the upper status-bar backdrop keeps the panel's original dark tone.
+  if (safariTopTint) safariTopTint.style.background = '#242424';
 }
 
 function createStoryController(viewerId){
@@ -224,9 +212,13 @@ function setPanelDrawer(open){
     }
   } else {
     restorePanelChrome();
-
-    requestAnimationFrame(() => restorePanelChrome());
-    setTimeout(() => restorePanelChrome(), 380);
+    // Reaffirm after the drawer finishes moving, without overriding a new open.
+    requestAnimationFrame(() => {
+      if (!panelSideDrawer.classList.contains('is-open')) restorePanelChrome();
+    });
+    setTimeout(() => {
+      if (!panelSideDrawer.classList.contains('is-open')) restorePanelChrome();
+    }, 380);
   }
 }
 
