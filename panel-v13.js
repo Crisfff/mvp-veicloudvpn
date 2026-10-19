@@ -9,12 +9,25 @@ function setThemeColor(color){
 }
 
 function restorePanelChrome(){
-  themeMetas.forEach((meta, index) => {
-    meta.setAttribute('content', originalThemeColors[index] || '#ffffff');
+  document.documentElement.classList.remove('panel-drawer-open');
+  document.body.classList.remove('panel-drawer-open');
+
+  document.documentElement.style.setProperty('background-color', '#ffffff', 'important');
+  document.body.style.setProperty('background-color', '#ffffff', 'important');
+  document.documentElement.style.colorScheme = 'light';
+  document.body.style.colorScheme = 'light';
+
+  themeMetas.forEach(meta => meta.setAttribute('content', '#fefefe'));
+
+  requestAnimationFrame(() => {
+    themeMetas.forEach(meta => meta.setAttribute('content', '#ffffff'));
   });
 
-  document.documentElement.style.backgroundColor = '#ffffff';
-  document.body.style.backgroundColor = '#ffffff';
+  setTimeout(() => {
+    themeMetas.forEach(meta => meta.setAttribute('content', '#ffffff'));
+    document.documentElement.style.setProperty('background-color', '#ffffff', 'important');
+    document.body.style.setProperty('background-color', '#ffffff', 'important');
+  }, 120);
 
   if (safariTopTint) {
     safariTopTint.style.background = '#242424';
@@ -200,9 +213,11 @@ function setPanelDrawer(open){
   panelDrawerBackdrop.setAttribute('aria-hidden', String(!open));
 
   if (open) {
+    document.documentElement.style.colorScheme = 'dark';
+    document.body.style.colorScheme = 'dark';
     setThemeColor('#242424');
-    document.documentElement.style.backgroundColor = '#242424';
-    document.body.style.backgroundColor = '#242424';
+    document.documentElement.style.setProperty('background-color', '#242424', 'important');
+    document.body.style.setProperty('background-color', '#242424', 'important');
 
     if (safariTopTint) {
       safariTopTint.style.background = '#242424';
