@@ -12,13 +12,15 @@ function syncDrawerChrome(){
   const isOpen = Boolean(panelSideDrawer?.classList.contains('is-open'));
   document.documentElement.classList.toggle('panel-drawer-open', isOpen);
   document.body.classList.toggle('panel-drawer-open', isOpen);
-  // Safari takes the browser bottom bar from the document backdrop.
-  // Never darken the root or theme-color, even while the fixed drawer is open.
-  document.documentElement.style.setProperty('background-color', '#ffffff', 'important');
-  document.body.style.setProperty('background-color', '#ffffff', 'important');
-  document.documentElement.style.colorScheme = 'light';
-  document.body.style.colorScheme = 'light';
-  setThemeColor('#ffffff');
+  // Keep the proven light Safari bar on Home. In Plans, tint the browser
+  // chrome only while its full-screen drawer is open.
+  const darkPlansDrawer = isOpen && document.body.classList.contains('vc-plans-open');
+  const chromeColor = darkPlansDrawer ? '#242424' : '#ffffff';
+  document.documentElement.style.setProperty('background-color', chromeColor, 'important');
+  document.body.style.setProperty('background-color', chromeColor, 'important');
+  document.documentElement.style.colorScheme = darkPlansDrawer ? 'dark' : 'light';
+  document.body.style.colorScheme = darkPlansDrawer ? 'dark' : 'light';
+  setThemeColor(chromeColor);
 }
 
 function restorePanelChrome(){
