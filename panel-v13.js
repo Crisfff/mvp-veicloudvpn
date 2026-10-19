@@ -12,14 +12,14 @@ function syncDrawerChrome(){
   const isOpen = Boolean(panelSideDrawer?.classList.contains('is-open'));
   document.documentElement.classList.toggle('panel-drawer-open', isOpen);
   document.body.classList.toggle('panel-drawer-open', isOpen);
-  const color = isOpen ? '#242424' : '#ffffff';
-  document.documentElement.style.setProperty('background-color', color, 'important');
-  document.body.style.setProperty('background-color', color, 'important');
-  document.documentElement.style.colorScheme = isOpen ? 'dark' : 'light';
-  document.body.style.colorScheme = isOpen ? 'dark' : 'light';
-  setThemeColor(color);
+  // Safari takes the browser bottom bar from the document backdrop.
+  // Never darken the root or theme-color, even while the fixed drawer is open.
+  document.documentElement.style.setProperty('background-color', '#ffffff', 'important');
+  document.body.style.setProperty('background-color', '#ffffff', 'important');
+  document.documentElement.style.colorScheme = 'light';
+  document.body.style.colorScheme = 'light';
+  setThemeColor('#ffffff');
 }
-
 
 function restorePanelChrome(){
   // Restore the document AND the browser's bottom navigation bar.
@@ -213,26 +213,10 @@ function setPanelDrawer(open){
   panelSideDrawer.setAttribute('aria-hidden', String(!open));
   panelDrawerBackdrop.setAttribute('aria-hidden', String(!open));
 
-  if (open) {
-    document.documentElement.style.colorScheme = 'dark';
-    document.body.style.colorScheme = 'dark';
-    setThemeColor('#242424');
-    document.documentElement.style.setProperty('background-color', '#242424', 'important');
-    document.body.style.setProperty('background-color', '#242424', 'important');
+  if (open && safariTopTint) safariTopTint.style.background = '#242424';
+  if (!open) restorePanelChrome();
+  syncDrawerChrome();
 
-    if (safariTopTint) {
-      safariTopTint.style.background = '#242424';
-    }
-  } else {
-    restorePanelChrome();
-    // Reaffirm after the drawer finishes moving, without overriding a new open.
-    requestAnimationFrame(() => {
-      if (!panelSideDrawer.classList.contains('is-open')) restorePanelChrome();
-    });
-    setTimeout(() => {
-      if (!panelSideDrawer.classList.contains('is-open')) restorePanelChrome();
-    }, 380);
-  }
 }
 
 panelMenuToggle?.addEventListener('click', event => {
