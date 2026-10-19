@@ -4554,3 +4554,16 @@ body.panel-drawer-open{
 .panel-side-nav-button.is-off iconify-icon{
   color:#242424;
 }
+
+
+/* Correct OFF drawer state */
+.panel-side-nav-button.is-off{
+  background:transparent !important;
+  border-color:transparent !important;
+  box-shadow:none !important;
+  color:#a9a9a9 !important;
+}
+
+.panel-side-nav-button.is-off iconify-icon{
+  color:#a9a9a9 !important;
+}
