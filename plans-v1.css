@@ -1,6 +1,16 @@
 /* VeiCloud Plans: isolated styles, designed for native page scrolling */
 .vc-plans-view[hidden]{display:none !important}
-body.vc-plans-open .panel-page{display:none !important}
+/* Plans keeps .panel-page visible so Safari sees the same scroll root as Home. */
+body.vc-plans-open .panel-page > .panel-header,
+body.vc-plans-open .panel-page > .stories-tray,
+body.vc-plans-open .panel-page > .vpn-promo-card,
+body.vc-plans-open .panel-page > .account-cards {
+  display:none !important;
+}
+body.vc-plans-open .panel-page {
+  display:block !important;
+  min-height:100svh !important;
+}
 body.vc-plans-open .safari-top-tint{background:#f7f7f8 !important}
 .vc-plans-view{
   min-height:100svh;
@@ -362,4 +372,20 @@ body.vc-plans-open.panel-drawer-open .vc-plans-footer {
 /* Keep the top heading out of the way, leaving the X to close the drawer. */
 body.vc-plans-open.panel-drawer-open .vc-plans-menu-button {
   pointer-events:auto !important;
+}
+
+
+/* v6: The drawer remains inside the same .panel-page for Home and Plans,
+   so iOS Safari's bottom bar samples identical document layering. */
+body.vc-plans-open .panel-page {
+  background:#f7f7f8 !important;
+}
+body.vc-plans-open.panel-drawer-open .panel-page {
+  background:#242424 !important;
+}
+body.vc-plans-open .panel-page > .panel-side-drawer {
+  position:fixed !important;
+}
+body.vc-plans-open.panel-drawer-open .panel-page > .panel-side-drawer {
+  background:#242424 !important;
 }
