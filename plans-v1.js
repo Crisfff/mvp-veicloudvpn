@@ -18,8 +18,8 @@
 
   const plans = {
     standard: {name:'Standard', monthly:199, discounts:{monthly:0, yearly:.05, twoYears:.10}},
-    gold: {name:'Gold', monthly:499, discounts:{monthly:0, yearly:.08, twoYears:.14}},
-    premium: {name:'Premium', monthly:899, discounts:{monthly:0, yearly:.20, twoYears:.28}}
+    gold: {name:'Gold', monthly:499, discounts:{monthly:0, yearly:.07, twoYears:.12}},
+    premium: {name:'Premium', monthly:899, discounts:{monthly:0, yearly:.10, twoYears:.18}}
   };
   const cycles = {
     monthly:{months:1,label:'Plan mensual',unit:'/mes',billing:'Facturado cada mes'},
