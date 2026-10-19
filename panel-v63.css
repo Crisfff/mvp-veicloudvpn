@@ -4726,3 +4726,29 @@ body.panel-drawer-open{
     right:16px;
   }
 }
+
+
+/* Fill every visible viewport gap while drawer is open v64 */
+body.panel-drawer-open::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100dvh;
+  min-height:100svh;
+  background:#242424;
+  z-index:10000;
+  pointer-events:none;
+}
+
+.panel-side-drawer{
+  position:fixed !important;
+  inset:0 !important;
+  width:100vw !important;
+  height:100dvh !important;
+  min-height:100svh !important;
+  max-width:none !important;
+  border-radius:0 !important;
+  background:#242424 !important;
+  z-index:10020 !important;
+}
