@@ -399,3 +399,82 @@ body.vc-plans-open.panel-drawer-open .panel-page > .panel-side-drawer {
 body.vc-plans-open.panel-drawer-open .vc-plans-footer {
   display:none !important;
 }
+
+
+/* v8: expandable subscription offer, payment and service conditions */
+.vc-plans-legal{
+  margin:22px 0 0;
+  border-top:1px solid #e4e4e8;
+  border-bottom:1px solid #e4e4e8;
+  background:transparent;
+}
+.vc-plans-legal-summary{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  width:100%;
+  padding:21px 2px;
+  color:#27272b;
+  font-size:clamp(13px,3.8vw,16px);
+  font-weight:550;
+  line-height:1.5;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+.vc-plans-legal-summary::-webkit-details-marker{display:none}
+.vc-plans-legal-summary::marker{content:""}
+.vc-plans-legal-summary span{min-width:0;flex:1}
+.vc-plans-legal-summary iconify-icon{
+  flex:none;
+  font-size:21px;
+  transition:transform .2s ease;
+}
+.vc-plans-legal[open] .vc-plans-legal-summary iconify-icon{transform:rotate(180deg)}
+.vc-plans-legal-summary:focus-visible{
+  outline:2px solid #242424;
+  outline-offset:3px;
+  border-radius:8px;
+}
+.vc-plans-legal-content{
+  padding:1px 2px 24px;
+  color:#5a5d66;
+  font-size:12.5px;
+  line-height:1.75;
+  overflow-wrap:break-word;
+}
+.vc-plans-legal-section + .vc-plans-legal-section{margin-top:24px}
+.vc-plans-legal-section h2{
+  color:#242424;
+  font-size:14px;
+  font-weight:750;
+  line-height:1.4;
+  letter-spacing:-.015em;
+  margin:0 0 9px;
+}
+.vc-plans-legal-section p{margin:0 0 11px}
+.vc-plans-legal-section p:last-child{margin-bottom:0}
+.vc-plans-legal-link,
+.vc-plans-legal-link:visited{
+  color:#2365d8 !important;
+  text-decoration:underline !important;
+  text-underline-offset:2px;
+  text-decoration-thickness:1px;
+  font-weight:600;
+}
+.vc-plans-legal-link:focus-visible{
+  outline:2px solid #2365d8;
+  outline-offset:3px;
+  border-radius:3px;
+}
+.vc-plans-legal-unpublished{
+  display:inline;
+  color:#686d78;
+  font-size:11px;
+  font-weight:500;
+}
+@media(max-width:380px){
+  .vc-plans-legal-summary{font-size:13px}
+  .vc-plans-legal-content{font-size:12px}
+}
