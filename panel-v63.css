@@ -4792,3 +4792,19 @@ body:not(.panel-drawer-open)::before { display: none !important; }
   visibility: hidden !important;
   pointer-events: none !important;
 }
+
+/* v9: Vertical page scrolling must work even when swiping over stories.
+   pan-x on the horizontal tray intercepted vertical gestures on iOS/Android. */
+.stories-tray {
+  touch-action: pan-x pan-y !important;
+  overscroll-behavior-y: auto !important;
+}
+.story-card {
+  touch-action: pan-x pan-y !important;
+}
+html:not(.panel-drawer-open), body:not(.panel-drawer-open) {
+  overflow-x: clip !important;
+  overflow-y: auto !important;
+  touch-action: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
