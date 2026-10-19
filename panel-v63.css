@@ -4830,3 +4830,12 @@ body:not(.panel-drawer-open) {
 .stories-tray, .story-card {
   touch-action: auto !important;
 }
+
+
+/* v11: Never show the panel hamburger above fullscreen stories. */
+body.story-open .panel-header .menu-button,
+body.story-open #panelMenuToggle {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
