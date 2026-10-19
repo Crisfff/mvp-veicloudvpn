@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="panel-v63.css?v=12" />
+  <link rel="stylesheet" href="plans-v1.css?v=1" />
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   </head>
 <body>
@@ -39,7 +40,7 @@
             <span>Descargas</span>
           </button>
 
-          <button class="panel-side-nav-button is-off" type="button">
+          <button class="panel-side-nav-button vc-plans-nav-link" id="panelPlansButton" type="button">
             <iconify-icon icon="lucide:shopping-basket" aria-hidden="true"></iconify-icon>
             <span>Planes disponibles</span>
           </button>
@@ -283,6 +284,96 @@
     </section>
   </main>
 
+
+  <!-- Plans screen: native page scrolling, accessible from the drawer -->
+  <section class="vc-plans-view" id="vcPlansView" aria-labelledby="vcPlansTitle" hidden>
+    <div class="vc-plans-wrap">
+      <header class="vc-plans-header">
+        <button class="vc-plans-back" id="vcPlansBack" type="button" aria-label="Volver al panel">
+          <iconify-icon icon="lucide:arrow-left" aria-hidden="true"></iconify-icon>
+        </button>
+        <span class="vc-plans-heading">VeiCloud</span>
+      </header>
+
+      <div class="vc-plans-intro">
+        <span class="vc-plans-kicker">Tu conexión, tus reglas</span>
+        <h1 id="vcPlansTitle">Selecciona tu plan</h1>
+        <p>Encuentra la protección que necesitas y ahorra eligiendo una suscripción más larga.</p>
+      </div>
+
+      <div class="vc-plans-period">
+        <span class="vc-plans-period-title">Periodo de suscripción</span>
+        <button class="vc-plans-period-trigger" id="vcPlansPeriodTrigger" type="button"
+                aria-expanded="false" aria-haspopup="listbox" aria-controls="vcPlansPeriodMenu">
+          <span id="vcPlansPeriodText">Plan mensual</span>
+          <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon>
+        </button>
+        <div class="vc-plans-period-menu" id="vcPlansPeriodMenu" role="listbox" aria-label="Periodo de suscripción" hidden>
+          <button class="vc-plans-option" type="button" role="option" data-cycle="twoYears" aria-selected="false">
+            <span>Plan de 2 años</span><small>Ahorra 20 %</small>
+          </button>
+          <button class="vc-plans-option" type="button" role="option" data-cycle="yearly" aria-selected="false">
+            <span>Plan anual</span><small>Ahorra 8 %</small>
+          </button>
+          <button class="vc-plans-option" type="button" role="option" data-cycle="monthly" aria-selected="true">
+            <span>Plan mensual</span><small>Sin compromiso anual</small>
+          </button>
+        </div>
+      </div>
+
+      <div class="vc-plans-list" role="radiogroup" aria-label="Elige tu plan">
+        <article class="vc-plan" data-plan="standard">
+          <label class="vc-plan-inner">
+            <input class="vc-plan-input" type="radio" name="vcPlanChoice" value="standard" />
+            <span class="vc-plan-check" aria-hidden="true"></span>
+            <span class="vc-plan-body">
+              <span class="vc-plan-top"><h2>Standard</h2><span class="vc-plan-devices">1 dispositivo</span></span>
+              <span class="vc-plan-price-row"><span class="vc-plan-price">199 ₽</span><span class="vc-plan-unit">/mes</span></span>
+              <span class="vc-plan-billing">Facturado cada mes</span>
+              <span class="vc-plan-deal" hidden><span class="vc-plan-discount"></span><span class="vc-plan-saving"></span></span>
+            </span>
+          </label>
+        </article>
+
+        <article class="vc-plan vc-plan-featured" data-plan="gold">
+          <div class="vc-plan-featured-label">Recomendado para ti</div>
+          <label class="vc-plan-inner">
+            <input class="vc-plan-input" type="radio" name="vcPlanChoice" value="gold" checked />
+            <span class="vc-plan-check" aria-hidden="true"></span>
+            <span class="vc-plan-body">
+              <span class="vc-plan-top"><h2>Gold</h2><span class="vc-plan-devices">3 dispositivos</span></span>
+              <span class="vc-plan-price-row"><span class="vc-plan-price">499 ₽</span><span class="vc-plan-unit">/mes</span></span>
+              <span class="vc-plan-billing">Facturado cada mes</span>
+              <span class="vc-plan-deal" hidden><span class="vc-plan-discount"></span><span class="vc-plan-saving"></span></span>
+            </span>
+          </label>
+        </article>
+
+        <article class="vc-plan" data-plan="premium">
+          <label class="vc-plan-inner">
+            <input class="vc-plan-input" type="radio" name="vcPlanChoice" value="premium" />
+            <span class="vc-plan-check" aria-hidden="true"></span>
+            <span class="vc-plan-body">
+              <span class="vc-plan-top"><h2>Premium</h2><span class="vc-plan-devices">8 dispositivos</span></span>
+              <span class="vc-plan-price-row"><span class="vc-plan-price">899 ₽</span><span class="vc-plan-unit">/mes</span></span>
+              <span class="vc-plan-billing">Facturado cada mes</span>
+              <span class="vc-plan-deal" hidden><span class="vc-plan-discount"></span><span class="vc-plan-saving"></span></span>
+            </span>
+          </label>
+        </article>
+      </div>
+
+      <div class="vc-plans-footer">
+        <button class="vc-plans-cta" id="vcPlansContinue" type="button">
+          <span class="vc-plans-cta-label">Elegir Gold · 499 ₽</span>
+          <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon>
+        </button>
+        <p class="vc-plans-message" id="vcPlansMessage" role="status" aria-live="polite" hidden></p>
+        <p class="vc-plans-disclaimer">Precios en rublos. El pago se realizará al confirmar la contratación.</p>
+      </div>
+    </div>
+  </section>
+
   <div class="story-viewer" id="storyViewer" aria-hidden="true">
     <div class="story-progress" aria-hidden="true">
       <div class="story-progress-track"><span class="story-progress-fill" data-progress="0"></span></div>
@@ -482,5 +573,6 @@
   </div>
 
   <script src="panel-v13.js?v=8"></script>
+  <script src="plans-v1.js?v=1"></script>
 </body>
 </html>
