@@ -389,3 +389,13 @@ body.vc-plans-open .panel-page > .panel-side-drawer {
 body.vc-plans-open.panel-drawer-open .panel-page > .panel-side-drawer {
   background:#242424 !important;
 }
+
+
+/* Safari 26: prevent the sticky-bottom light checkout bar being sampled
+   while the fullscreen drawer is open. display:none is intentional here:
+   transparent backgrounds, transforms or opacity still affect Safari tint. */
+.vc-plans-footer[hidden],
+.vc-plans-view.vc-plans-drawer-cover .vc-plans-footer,
+body.vc-plans-open.panel-drawer-open .vc-plans-footer {
+  display:none !important;
+}
