@@ -8,6 +8,19 @@ function setThemeColor(color){
   themeMetas.forEach(meta => meta.setAttribute('content', color));
 }
 
+function syncDrawerChrome(){
+  const isOpen = Boolean(panelSideDrawer?.classList.contains('is-open'));
+  document.documentElement.classList.toggle('panel-drawer-open', isOpen);
+  document.body.classList.toggle('panel-drawer-open', isOpen);
+  const color = isOpen ? '#242424' : '#ffffff';
+  document.documentElement.style.setProperty('background-color', color, 'important');
+  document.body.style.setProperty('background-color', color, 'important');
+  document.documentElement.style.colorScheme = isOpen ? 'dark' : 'light';
+  document.body.style.colorScheme = isOpen ? 'dark' : 'light';
+  setThemeColor(color);
+}
+
+
 function restorePanelChrome(){
   // Restore the document AND the browser's bottom navigation bar.
   document.documentElement.classList.remove('panel-drawer-open');
@@ -238,3 +251,10 @@ document.addEventListener('keydown', event => {
     setPanelDrawer(false);
   }
 });
+
+// Reconcile browser UI colors after Safari page restoration and viewport changes.
+window.addEventListener('pageshow', syncDrawerChrome);
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) syncDrawerChrome();
+});
+window.addEventListener('resize', syncDrawerChrome);
