@@ -36,8 +36,7 @@
   let cycle = 'monthly';
   let selected = 'premium';
   let previousScroll = 0;
-  // The drawer normally lives in .panel-page. While the plans view hides
-  // that page, mount the same drawer on <body> so its menu remains functional.
+  // The drawer stays mounted inside .panel-page for both views.
   let openedByNavigation = false;
 
   function updateNavigationSelection(){
@@ -74,15 +73,7 @@
   const drawerObserver = new MutationObserver(setPlansMenuChrome);
   drawerObserver.observe(drawer,{attributes:true,attributeFilter:['class']});
 
-  function mountDrawerInPlans(){
-    document.body.append(drawerBackdrop,drawer);
-    setPlansMenuChrome();
-  }
-  function restoreDrawerInPanel(){
-    panel.insertBefore(drawerBackdrop,panel.firstChild);
-    panel.insertBefore(drawer,drawerBackdrop.nextSibling);
-    setPlansMenuChrome();
-  }
+
 
   function totalPrice(plan, cycleKey){
     const billing = cycles[cycleKey];
@@ -129,11 +120,9 @@
     if (open) {
       previousScroll = window.scrollY;
       if (typeof setPanelDrawer === 'function') setPanelDrawer(false);
-      mountDrawerInPlans();
       page.hidden = false;
       document.body.classList.add('vc-plans-open');
       updateNavigationSelection();
-      panel.setAttribute('aria-hidden','true');
       window.scrollTo(0,0);
       render();
     } else {
@@ -142,8 +131,6 @@
       page.hidden = true;
       document.body.classList.remove('vc-plans-open');
       updateNavigationSelection();
-      panel.removeAttribute('aria-hidden');
-      restoreDrawerInPanel();
       window.scrollTo(0,previousScroll);
       openedByNavigation = false;
     }
