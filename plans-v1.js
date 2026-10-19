@@ -3,6 +3,7 @@
   const panel = document.querySelector('.panel-page');
   const page = document.getElementById('vcPlansView');
   const openLink = document.getElementById('panelPlansButton');
+  const activateLink = document.querySelector('.activate-plan-button');
   const back = document.getElementById('vcPlansBack');
   const cycleTrigger = document.getElementById('vcPlansPeriodTrigger');
   const cycleText = document.getElementById('vcPlansPeriodText');
@@ -27,7 +28,7 @@
   const formatRub = value => new Intl.NumberFormat('es-ES',{maximumFractionDigits:0}).format(value) + ' ₽';
   const monthlyEquivalent = value => new Intl.NumberFormat('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}).format(value);
   let cycle = 'monthly';
-  let selected = 'gold';
+  let selected = 'premium';
   let previousScroll = 0;
   let openedByNavigation = false;
 
@@ -86,13 +87,15 @@
     showPlansView(location.hash === '#planes');
   }
 
-  openLink.addEventListener('click', () => {
+  function openPlans(){
     if (location.hash !== '#planes') {
       openedByNavigation = true;
       history.pushState({vcPlans:true}, '', location.pathname + location.search + '#planes');
     }
     showPlansView(true);
-  });
+  }
+  openLink.addEventListener('click',openPlans);
+  activateLink?.addEventListener('click',openPlans);
   back.addEventListener('click', () => {
     if (openedByNavigation && location.hash === '#planes') {
       history.back();
