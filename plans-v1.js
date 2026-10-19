@@ -239,6 +239,27 @@
   }
 
 
+  // Footer shortcuts reuse the same expanded legal information rather than
+  // linking to non-existent standalone Terms or Privacy documents.
+  const legalDisclosure = document.getElementById('vcPlansLegal');
+  page.querySelectorAll('[data-vc-plans-footer]').forEach(button => {
+    button.addEventListener('click', () => {
+      if (!legalDisclosure) return;
+      legalDisclosure.open = true;
+      const sections = [...legalDisclosure.querySelectorAll('.vc-plans-legal-section')];
+      const type = button.dataset.vcPlansFooter;
+      const target = type === 'help' ? sections[sections.length - 1] : sections[0];
+      requestAnimationFrame(() => {
+        if (type === 'terms' || type === 'privacy') {
+          const pending = target?.querySelector('[data-vc-legal-link="pending"][data-vc-legal-label="' +
+            (type === 'terms' ? 'Términos del servicio' : 'Política de privacidad') + '"]');
+          pending?.click();
+        }
+        target?.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+  });
+
   // Keep the links semantic and usable without inventing unpublished pages.
   // The destinations already present in the panel scroll to their actual cards.
   page.querySelectorAll('.vc-plans-legal-link').forEach(link => {
