@@ -10,7 +10,7 @@
   <meta name="description" content="Panel VeiCloud" />
   <title>VeiCloud · Panel</title>
   <link rel="icon" href="favicon.svg?v=4" type="image/svg+xml" />
-  <link rel="stylesheet" href="panel-v37.css" />
+  <link rel="stylesheet" href="panel-v38.css" />
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   </head>
 <body>
@@ -126,7 +126,7 @@
         </button>
       </article>
 
-      <button class="account-card devices-card" type="button" id="devicesCard">
+      <button class="account-card devices-card" type="button" id="devicesCard" style="--device-progress:0%;">
         <div class="account-card-icon devices-icon">
           <iconify-icon icon="lucide:monitor-smartphone" aria-hidden="true"></iconify-icon>
         </div>
@@ -135,6 +135,13 @@
           <span>Gestiona tus equipos</span>
         </div>
         <iconify-icon class="account-card-arrow" icon="lucide:chevron-right" aria-hidden="true"></iconify-icon>
+
+        <div class="device-usage">
+          <span class="device-usage-count">0/0</span>
+          <div class="device-progress-track" aria-hidden="true">
+            <span class="device-progress-fill"></span>
+          </div>
+        </div>
       </button>
     </section>
   </main>
