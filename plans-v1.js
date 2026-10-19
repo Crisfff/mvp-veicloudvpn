@@ -4,7 +4,10 @@
   const page = document.getElementById('vcPlansView');
   const openLink = document.getElementById('panelPlansButton');
   const activateLink = document.querySelector('.activate-plan-button');
-  const back = document.getElementById('vcPlansBack');
+  const plansMenuToggle = document.getElementById('vcPlansMenuToggle');
+  const drawer = document.getElementById('panelSideDrawer');
+  const drawerBackdrop = document.getElementById('panelDrawerBackdrop');
+  const homeLink = document.querySelector('.panel-side-nav-button[aria-current="page"]');
   const cycleTrigger = document.getElementById('vcPlansPeriodTrigger');
   const cycleText = document.getElementById('vcPlansPeriodText');
   const cycleMenu = document.getElementById('vcPlansPeriodMenu');
@@ -14,7 +17,7 @@
   const cta = document.getElementById('vcPlansContinue');
   const message = document.getElementById('vcPlansMessage');
   const fixedFooter = document.getElementById('vcPlansFooter');
-  if (!panel || !page || !openLink || !back || !cycleTrigger || !cycleMenu || !cta) return;
+  if (!panel || !page || !openLink || !plansMenuToggle || !drawer || !drawerBackdrop || !cycleTrigger || !cycleMenu || !cta) return;
 
   // Descuentos moderados: priorizan sostenibilidad con servidores de capacidad limitada.
   const plans = {
@@ -32,7 +35,28 @@
   let cycle = 'monthly';
   let selected = 'premium';
   let previousScroll = 0;
+  // The drawer normally lives in .panel-page. While the plans view hides
+  // that page, mount the same drawer on <body> so its menu remains functional.
   let openedByNavigation = false;
+
+  function setPlansMenuChrome(){
+    const open = drawer.classList.contains('is-open');
+    plansMenuToggle.classList.toggle('is-open',open);
+    plansMenuToggle.setAttribute('aria-expanded', String(open));
+    plansMenuToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  }
+  const drawerObserver = new MutationObserver(setPlansMenuChrome);
+  drawerObserver.observe(drawer,{attributes:true,attributeFilter:['class']});
+
+  function mountDrawerInPlans(){
+    document.body.append(drawerBackdrop,drawer);
+    setPlansMenuChrome();
+  }
+  function restoreDrawerInPanel(){
+    panel.insertBefore(drawerBackdrop,panel.firstChild);
+    panel.insertBefore(drawer,drawerBackdrop.nextSibling);
+    setPlansMenuChrome();
+  }
 
   function totalPrice(plan, cycleKey){
     const billing = cycles[cycleKey];
@@ -79,16 +103,19 @@
     if (open) {
       previousScroll = window.scrollY;
       if (typeof setPanelDrawer === 'function') setPanelDrawer(false);
+      mountDrawerInPlans();
       page.hidden = false;
       document.body.classList.add('vc-plans-open');
       panel.setAttribute('aria-hidden','true');
       window.scrollTo(0,0);
       render();
     } else {
+      if (typeof setPanelDrawer === 'function') setPanelDrawer(false);
       closeMenu();
       page.hidden = true;
       document.body.classList.remove('vc-plans-open');
       panel.removeAttribute('aria-hidden');
+      restoreDrawerInPanel();
       window.scrollTo(0,previousScroll);
       openedByNavigation = false;
     }
@@ -104,15 +131,21 @@
     }
     showPlansView(true);
   }
-  openLink.addEventListener('click',openPlans);
+  openLink.addEventListener('click', () => {
+    if (typeof setPanelDrawer === 'function') setPanelDrawer(false);
+    openPlans();
+  });
   activateLink?.addEventListener('click',openPlans);
-  back.addEventListener('click', () => {
-    if (openedByNavigation && location.hash === '#planes') {
-      history.back();
-    } else {
-      history.replaceState(null,'',location.pathname + location.search);
-      showPlansView(false);
+  plansMenuToggle.addEventListener('click', () => {
+    if (typeof setPanelDrawer === 'function') {
+      setPanelDrawer(!drawer.classList.contains('is-open'));
+      setPlansMenuChrome();
     }
+  });
+  homeLink?.addEventListener('click', () => {
+    if (!document.body.classList.contains('vc-plans-open')) return;
+    history.replaceState(null,'',location.pathname + location.search);
+    showPlansView(false);
   });
   window.addEventListener('popstate',syncRoute);
   window.addEventListener('hashchange',syncRoute);
@@ -135,7 +168,10 @@
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') {
       if (!cycleMenu.hidden) { closeMenu(); cycleTrigger.focus(); }
-      else if (document.body.classList.contains('vc-plans-open')) back.click();
+      else if (document.body.classList.contains('vc-plans-open') && !drawer.classList.contains('is-open')) {
+        history.replaceState(null,'',location.pathname + location.search);
+        showPlansView(false);
+      }
     }
   });
   planRadios.forEach(radio => radio.addEventListener('change', () => {
