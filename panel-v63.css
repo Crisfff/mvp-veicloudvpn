@@ -4808,3 +4808,25 @@ html:not(.panel-drawer-open), body:not(.panel-drawer-open) {
   touch-action: auto !important;
   -webkit-overflow-scrolling: touch;
 }
+
+/* v10: single native page scroller; avoid nested html/body rubber-band. */
+html:not(.panel-drawer-open) {
+  overflow-x: clip !important;
+  overflow-y: auto !important;
+  overscroll-behavior-y: auto !important;
+  touch-action: auto !important;
+}
+body:not(.panel-drawer-open) {
+  overflow: visible !important;
+  overscroll-behavior: auto !important;
+  touch-action: auto !important;
+  -webkit-overflow-scrolling: auto !important;
+}
+.panel-page {
+  height: auto !important;
+  overflow: visible !important;
+  touch-action: auto !important;
+}
+.stories-tray, .story-card {
+  touch-action: auto !important;
+}
