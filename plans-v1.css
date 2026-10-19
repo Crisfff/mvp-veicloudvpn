@@ -214,3 +214,78 @@ body.vc-plans-open .safari-top-tint{background:#f7f7f8 !important}
 @media(max-width:380px){
   .vc-plans-footer{padding-left:15px;padding-right:15px}
 }
+
+
+/* v3: plans screen uses the same full-width charcoal header as My Panel. */
+body.vc-plans-open .safari-top-tint{
+  background:#242424 !important;
+  height:max(12px,env(safe-area-inset-top));
+}
+.vc-plans-header{
+  position:sticky;
+  top:0;
+  z-index:10055;
+  width:auto;
+  height:calc(76px + env(safe-area-inset-top));
+  margin:0 -18px 24px;
+  padding:calc(env(safe-area-inset-top) + 14px) 20px 14px;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:#242424;
+}
+.vc-plans-title{
+  flex:1;
+  margin:0;
+  padding:0 9px;
+  color:white;
+  font-size:19px;
+  font-weight:600;
+  letter-spacing:-.025em;
+  line-height:1.2;
+  text-align:center;
+}
+.vc-plans-menu-button{
+  position:relative;
+  z-index:1;
+  width:42px;
+  height:42px;
+  flex:0 0 42px;
+  border-radius:14px;
+  background:rgba(255,255,255,.12);
+  transition:none !important;
+  pointer-events:auto;
+}
+.vc-plans-menu-button span{
+  transition:none !important;
+  animation:none !important;
+  transform:none;
+  flex:0 0 auto;
+}
+.vc-plans-menu-button.is-open span:nth-child(1){transform:translateY(5.6px) rotate(45deg)}
+.vc-plans-menu-button.is-open span:nth-child(2){opacity:0}
+.vc-plans-menu-button.is-open span:nth-child(3){transform:translateY(-5.6px) rotate(-45deg)}
+.vc-plans-header-spacer{width:42px;height:42px;flex:0 0 42px}
+/* Keep the drawer's logo and menu content above the transparent header,
+   with only the close icon overlaid when the drawer is expanded. */
+body.vc-plans-open.panel-drawer-open .vc-plans-header{
+  background:transparent;
+  pointer-events:none;
+}
+body.vc-plans-open.panel-drawer-open .vc-plans-title,
+body.vc-plans-open.panel-drawer-open .vc-plans-header-spacer{
+  visibility:hidden;
+}
+@media(max-width:380px){
+  .vc-plans-header{
+    margin-left:-15px;
+    margin-right:-15px;
+    padding-left:16px;
+    padding-right:16px;
+  }
+  .vc-plans-title{font-size:18px}
+}
+@media(min-width:760px){
+  .vc-plans-header{padding-left:28px;padding-right:28px}
+}
