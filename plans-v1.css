@@ -478,3 +478,37 @@ body.vc-plans-open.panel-drawer-open .vc-plans-footer {
   .vc-plans-legal-summary{font-size:13px}
   .vc-plans-legal-content{font-size:12px}
 }
+
+
+/* v9: compact subscription information title and shared VeiCloud footer. */
+.vc-plans-legal-summary{
+  font-size:12px;
+  font-weight:500;
+  line-height:1.5;
+  gap:12px;
+}
+.vc-plans-legal-summary iconify-icon{
+  font-size:18px;
+}
+.vc-plans-site-footer{
+  margin-top:18px;
+  padding:18px 2px 0;
+  border-top:1px solid #e4e4e8;
+  gap:13px;
+  background:transparent;
+}
+.vc-plans-site-footer .panel-language{
+  color:#454951;
+  min-height:28px;
+}
+.vc-plans-site-footer .panel-footer-links button{
+  min-height:24px;
+  touch-action:manipulation;
+}
+.vc-plans-site-footer .panel-copyright{
+  padding:0 0 20px;
+}
+@media(min-width:760px){
+  .vc-plans-legal-summary{font-size:13px}
+  .vc-plans-site-footer{margin-top:24px}
+}
