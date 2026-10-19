@@ -289,3 +289,53 @@ body.vc-plans-open.panel-drawer-open .vc-plans-header-spacer{
 @media(min-width:760px){
   .vc-plans-header{padding-left:28px;padding-right:28px}
 }
+
+
+/* v4: Shared, animated active navigation indicator. The active pill moves
+   from Home to Plans instead of leaving Home selected in the Plans view. */
+.panel-side-nav.vc-active-nav-ready{position:relative;isolation:isolate}
+.panel-side-nav.vc-active-nav-ready::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:var(--vc-active-nav-y,0px);
+  height:var(--vc-active-nav-height,50px);
+  background:#303030;
+  border-radius:15px;
+  z-index:0;
+  pointer-events:none;
+  transition:top .27s cubic-bezier(.22,.8,.28,1),height .27s ease;
+}
+.panel-side-nav.vc-active-nav-ready .panel-side-nav-button{
+  position:relative;
+  z-index:1;
+}
+.panel-side-nav.vc-active-nav-ready .panel-side-nav-button.is-active,
+.panel-side-nav.vc-active-nav-ready .panel-side-nav-button[aria-current="page"]{
+  background:transparent !important;
+  border-color:transparent !important;
+  color:#fff !important;
+  box-shadow:none !important;
+}
+.panel-side-nav.vc-active-nav-ready .panel-side-nav-button.is-active iconify-icon,
+.panel-side-nav.vc-active-nav-ready .panel-side-nav-button[aria-current="page"] iconify-icon{
+  color:#fff !important;
+}
+.panel-side-nav .panel-side-nav-button.vc-plans-nav-link.is-off{
+  color:#a9a9a9 !important;
+}
+.panel-side-nav .panel-side-nav-button.vc-plans-nav-link.is-off iconify-icon{
+  color:#a9a9a9 !important;
+}
+/* The black Safari browser toolbar is only requested while Plans' drawer
+   is open. Closing it restores the original white/translucent appearance. */
+html:has(body.vc-plans-open.panel-drawer-open),
+body.vc-plans-open.panel-drawer-open{
+  background:#242424 !important;
+  color-scheme:dark !important;
+}
+body.vc-plans-open:not(.panel-drawer-open){
+  background:#fff !important;
+  color-scheme:light !important;
+}
