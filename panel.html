@@ -13,12 +13,37 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="panel-v57.css" />
+  <link rel="stylesheet" href="panel-v58.css" />
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   </head>
 <body>
   <div class="safari-top-tint" aria-hidden="true"></div>
   <main class="panel-page">
+    <div class="panel-drawer-backdrop" id="panelDrawerBackdrop" aria-hidden="true"></div>
+
+    <aside class="panel-side-drawer" id="panelSideDrawer" aria-hidden="true" aria-label="Navegación principal">
+      <div class="panel-drawer-top">
+        <button class="panel-drawer-close" id="panelDrawerClose" type="button" aria-label="Cerrar menú">
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="panel-drawer-brand" aria-label="VeiCloud">
+          <img src="assets/veicloud-logo.webp?v=2" alt="" aria-hidden="true" />
+          <span>VeiCloud</span>
+        </div>
+      </div>
+
+      <div class="panel-side-drawer-inner">
+        <nav class="panel-side-nav">
+          <button class="panel-side-nav-button is-active" type="button" aria-current="page">
+            <iconify-icon icon="lucide:house" aria-hidden="true"></iconify-icon>
+            <span>Home</span>
+          </button>
+        </nav>
+      </div>
+    </aside>
+
     <header class="panel-header">
       <button class="menu-button" id="panelMenuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="panelSideDrawer">
         <span></span>
@@ -223,26 +248,6 @@
     </section>
   </main>
 
-  <div class="panel-drawer-backdrop" id="panelDrawerBackdrop" aria-hidden="true"></div>
-
-  <aside class="panel-side-drawer" id="panelSideDrawer" aria-hidden="true" aria-label="Navegación principal">
-    <div class="panel-drawer-brand" aria-label="VeiCloud">
-      <img src="assets/veicloud-logo.webp?v=2" alt="" aria-hidden="true" />
-      <span>VeiCloud</span>
-    </div>
-
-    <div class="panel-side-drawer-inner">
-      <div class="panel-side-drawer-spacer" aria-hidden="true"></div>
-
-      <nav class="panel-side-nav">
-        <button class="panel-side-nav-button is-active" type="button" aria-current="page">
-          <iconify-icon icon="lucide:house" aria-hidden="true"></iconify-icon>
-          <span>Home</span>
-        </button>
-      </nav>
-    </div>
-  </aside>
-
   <div class="story-viewer" id="storyViewer" aria-hidden="true">
     <div class="story-progress" aria-hidden="true">
       <div class="story-progress-track"><span class="story-progress-fill" data-progress="0"></span></div>
@@ -441,6 +446,6 @@
     <button class="story-tap story-tap-right" type="button" data-story-next aria-label="Cerrar historia"></button>
   </div>
 
-  <script src="panel-v9.js"></script>
+  <script src="panel-v10.js"></script>
 </body>
 </html>
