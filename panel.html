@@ -13,18 +13,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="panel-v51.css" />
+  <link rel="stylesheet" href="panel-v52.css" />
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   </head>
 <body>
   <div class="safari-top-tint" aria-hidden="true"></div>
   <main class="panel-page">
     <header class="panel-header">
-      <button class="menu-button" type="button" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <div class="panel-menu" id="panelMenu">
+        <button class="menu-button" id="panelMenuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="panelMenuItems">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="panel-menu-items" id="panelMenuItems" aria-label="Navegación principal">
+          <button class="panel-nav-button is-active" type="button" aria-current="page">
+            <iconify-icon icon="lucide:house" aria-hidden="true"></iconify-icon>
+            <span>Home</span>
+          </button>
+        </nav>
+      </div>
 
       <div class="panel-title">My Panel</div>
 
@@ -421,6 +430,6 @@
     <button class="story-tap story-tap-right" type="button" data-story-next aria-label="Cerrar historia"></button>
   </div>
 
-  <script src="panel-v6.js"></script>
+  <script src="panel-v7.js"></script>
 </body>
 </html>
