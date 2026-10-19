@@ -214,7 +214,26 @@ function setPanelDrawer(open){
   panelDrawerBackdrop.setAttribute('aria-hidden', String(!open));
 
   if (open && safariTopTint) safariTopTint.style.background = '#242424';
-  if (!open) restorePanelChrome();
+  if (!open) {
+    restorePanelChrome();
+    // Safari's floating toolbar sometimes keeps the color sampled from
+    // the full-screen drawer until viewport movement invalidates it.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (panelSideDrawer.classList.contains('is-open')) return;
+        restorePanelChrome();
+        const before = window.scrollY;
+        if (document.documentElement.scrollHeight > window.innerHeight + 2) {
+          window.scrollTo({top: before + 1, behavior: 'instant'});
+          requestAnimationFrame(() => {
+            if (!panelSideDrawer.classList.contains('is-open')) {
+              window.scrollTo({top: before, behavior: 'instant'});
+            }
+          });
+        }
+      });
+    });
+  }
   syncDrawerChrome();
 
 }
