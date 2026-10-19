@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="panel-v63.css?v=12" />
-  <link rel="stylesheet" href="plans-v1.css?v=1" />
+  <link rel="stylesheet" href="plans-v1.css?v=2" />
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   </head>
 <body>
@@ -292,14 +292,8 @@
         <button class="vc-plans-back" id="vcPlansBack" type="button" aria-label="Volver al panel">
           <iconify-icon icon="lucide:arrow-left" aria-hidden="true"></iconify-icon>
         </button>
-        <span class="vc-plans-heading">VeiCloud</span>
+        <h1 id="vcPlansTitle" class="vc-plans-title">Selecciona tu plan</h1>
       </header>
-
-      <div class="vc-plans-intro">
-        <span class="vc-plans-kicker">Tu conexión, tus reglas</span>
-        <h1 id="vcPlansTitle">Selecciona tu plan</h1>
-        <p>Encuentra la protección que necesitas y ahorra eligiendo una suscripción más larga.</p>
-      </div>
 
       <div class="vc-plans-period">
         <span class="vc-plans-period-title">Periodo de suscripción</span>
@@ -363,13 +357,15 @@
         </article>
       </div>
 
-      <div class="vc-plans-footer">
-        <button class="vc-plans-cta" id="vcPlansContinue" type="button">
-          <span class="vc-plans-cta-label">Elegir Premium · 899 ₽</span>
-          <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon>
-        </button>
-        <p class="vc-plans-message" id="vcPlansMessage" role="status" aria-live="polite" hidden></p>
-        <p class="vc-plans-disclaimer">Precios en rublos. El pago se realizará al confirmar la contratación.</p>
+      <p class="vc-plans-disclaimer">Precios en rublos. El pago se realizará al confirmar la contratación.</p>
+      <div class="vc-plans-footer" id="vcPlansFooter">
+        <div class="vc-plans-footer-inner">
+          <button class="vc-plans-cta" id="vcPlansContinue" type="button">
+            <span class="vc-plans-cta-label">Elegir Premium · 899 ₽</span>
+            <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon>
+          </button>
+          <p class="vc-plans-message" id="vcPlansMessage" role="status" aria-live="polite" hidden></p>
+        </div>
       </div>
     </div>
   </section>
@@ -573,6 +569,6 @@
   </div>
 
   <script src="panel-v13.js?v=8"></script>
-  <script src="plans-v1.js?v=1"></script>
+  <script src="plans-v1.js?v=2"></script>
 </body>
 </html>
