@@ -143,3 +143,6 @@ body.vc-plans-open .safari-top-tint{background:#f7f7f8 !important}
 }
 .panel-side-nav-button.vc-plans-nav-link iconify-icon{color:#f1f1f1 !important}
 .panel-side-nav-button.vc-plans-nav-link:active{background:rgba(255,255,255,.09) !important}
+
+.vc-plan-deal[hidden]{display:none !important}
+.vc-plan-billing{display:block}
