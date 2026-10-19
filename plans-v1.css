@@ -339,3 +339,28 @@ body.vc-plans-open:not(.panel-drawer-open){
   background:#fff !important;
   color-scheme:light !important;
 }
+
+
+/* v5: Safari samples the document beneath the floating address bar.
+   The fullscreen drawer is dark, but the hidden Plans page and its fixed
+   purchase footer were still painted light underneath it.
+   Darken those underlays ONLY while the Plans drawer is actually open. */
+body.vc-plans-open.panel-drawer-open .vc-plans-view,
+body.vc-plans-open.panel-drawer-open .vc-plans-wrap {
+  background-color:#242424 !important;
+}
+body.vc-plans-open.panel-drawer-open .vc-plans-footer {
+  background:#242424 !important;
+  background-image:none !important;
+  border-color:#242424 !important;
+  -webkit-backdrop-filter:none !important;
+  backdrop-filter:none !important;
+  box-shadow:none !important;
+}
+body.vc-plans-open.panel-drawer-open .vc-plans-header {
+  background:#242424 !important;
+}
+/* Keep the top heading out of the way, leaving the X to close the drawer. */
+body.vc-plans-open.panel-drawer-open .vc-plans-menu-button {
+  pointer-events:auto !important;
+}
