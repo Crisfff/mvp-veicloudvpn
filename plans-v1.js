@@ -237,6 +237,42 @@
     });
     footerObserver.observe(fixedFooter);
   }
+
+
+  // Keep the links semantic and usable without inventing unpublished pages.
+  // The destinations already present in the panel scroll to their actual cards.
+  page.querySelectorAll('.vc-plans-legal-link').forEach(link => {
+    link.addEventListener('click', event => {
+      const destination = link.dataset.vcLegalLink;
+      if (!destination) return;
+      event.preventDefault();
+      if (destination === 'pending') {
+        let status = link.nextElementSibling;
+        if (!status?.classList.contains('vc-plans-legal-unpublished')) {
+          status = document.createElement('span');
+          status.className = 'vc-plans-legal-unpublished';
+          status.textContent = ' (documento pendiente de publicación)';
+          link.insertAdjacentElement('afterend',status);
+        }
+        return;
+      }
+      if (destination === 'plans') {
+        document.getElementById('vcPlansLegal').open = false;
+        page.querySelector('.vc-plans-period')?.scrollIntoView({behavior:'smooth',block:'start'});
+        return;
+      }
+      if (destination === 'home') {
+        const sectionId = link.dataset.vcLegalTarget;
+        if (!sectionId) return;
+        history.replaceState(null,'',location.pathname + location.search);
+        showPlansView(false);
+        requestAnimationFrame(() => {
+          document.getElementById(sectionId)?.scrollIntoView({behavior:'smooth',block:'center'});
+        });
+      }
+    });
+  });
+
   render();
   syncRoute();
   updateNavigationSelection();
