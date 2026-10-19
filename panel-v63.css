@@ -4780,3 +4780,15 @@ html:not(.panel-drawer-open), body:not(.panel-drawer-open) {
 .panel-side-drawer.is-open {
   background: #242424 !important;
 }
+
+/* v8: Keep regular document scrolling and white content behind Safari's
+   floating navigation bar after closing the full-screen drawer. */
+html:not(.panel-drawer-open), body:not(.panel-drawer-open) {
+  overflow-y: auto !important;
+  overscroll-behavior-y: auto !important;
+}
+body:not(.panel-drawer-open)::before { display: none !important; }
+.panel-side-drawer:not(.is-open) {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
