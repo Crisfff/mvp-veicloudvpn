@@ -17,14 +17,14 @@
   if (!panel || !page || !openLink || !back || !cycleTrigger || !cycleMenu || !cta) return;
 
   const plans = {
-    standard: {name:'Standard', monthly:199},
-    gold: {name:'Gold', monthly:499},
-    premium: {name:'Premium', monthly:899}
+    standard: {name:'Standard', monthly:199, discounts:{monthly:0, yearly:.05, twoYears:.10}},
+    gold: {name:'Gold', monthly:499, discounts:{monthly:0, yearly:.08, twoYears:.14}},
+    premium: {name:'Premium', monthly:899, discounts:{monthly:0, yearly:.20, twoYears:.28}}
   };
   const cycles = {
-    monthly:{months:1,discount:0,label:'Plan mensual',unit:'/mes',billing:'Facturado cada mes'},
-    yearly:{months:12,discount:.08,label:'Plan anual',unit:'/año',billing:'Facturado una vez al año'},
-    twoYears:{months:24,discount:.20,label:'Plan de 2 años',unit:'/2 años',billing:'Facturado una vez cada 2 años'}
+    monthly:{months:1,label:'Plan mensual',unit:'/mes',billing:'Facturado cada mes'},
+    yearly:{months:12,label:'Plan anual',unit:'/año',billing:'Facturado una vez al año'},
+    twoYears:{months:24,label:'Plan de 2 años',unit:'/2 años',billing:'Facturado una vez cada 2 años'}
   };
   const formatRub = value => new Intl.NumberFormat('es-ES',{maximumFractionDigits:0}).format(value) + ' ₽';
   const monthlyEquivalent = value => new Intl.NumberFormat('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}).format(value);
@@ -33,8 +33,9 @@
   let previousScroll = 0;
   let openedByNavigation = false;
 
-  function totalPrice(monthly, billing){
-    return Math.round(monthly * billing.months * (1-billing.discount));
+  function totalPrice(plan, cycleKey){
+    const billing = cycles[cycleKey];
+    return Math.round(plan.monthly * billing.months * (1 - plan.discounts[cycleKey]));
   }
 
   function closeMenu(){
@@ -46,22 +47,29 @@
     const billing = cycles[cycle];
     cycleText.textContent = billing.label;
     options.forEach(option => {
-      option.setAttribute('aria-selected', String(option.dataset.cycle === cycle));
+      const optionCycle = option.dataset.cycle;
+      option.setAttribute('aria-selected', String(optionCycle === cycle));
+      const savingLabel = option.querySelector('small');
+      if (savingLabel) {
+        savingLabel.textContent = optionCycle === 'monthly'
+          ? 'Sin compromiso anual'
+          : 'Ahorra ' + Math.round(plans[selected].discounts[optionCycle] * 100) + ' %';
+      }
     });
     cards.forEach(card => {
       const plan = plans[card.dataset.plan];
-      const total = totalPrice(plan.monthly,billing);
+      const total = totalPrice(plan,cycle);
       const saved = plan.monthly * billing.months - total;
       card.querySelector('.vc-plan-price').textContent = formatRub(total);
       card.querySelector('.vc-plan-unit').textContent = billing.unit;
       card.querySelector('.vc-plan-billing').textContent =
         billing.billing + (billing.months > 1 ? ' · ' + monthlyEquivalent(total/billing.months) + ' ₽/mes' : '');
       card.querySelector('.vc-plan-deal').hidden = billing.months === 1;
-      card.querySelector('.vc-plan-discount').textContent = '-' + Math.round(billing.discount * 100) + '%';
+      card.querySelector('.vc-plan-discount').textContent = '-' + Math.round(plan.discounts[cycle] * 100) + '%';
       card.querySelector('.vc-plan-saving').textContent = 'Ahorras ' + formatRub(saved);
     });
     const choice = plans[selected];
-    const amount = totalPrice(choice.monthly,billing);
+    const amount = totalPrice(choice,cycle);
     cta.querySelector('.vc-plans-cta-label').textContent = 'Elegir ' + choice.name + ' · ' + formatRub(amount);
     message.hidden = true;
   }
@@ -135,7 +143,7 @@
   cta.addEventListener('click', () => {
     const billing = cycles[cycle];
     message.textContent = 'Has seleccionado ' + plans[selected].name + ' por ' +
-      formatRub(totalPrice(plans[selected].monthly,billing)) +
+      formatRub(totalPrice(plans[selected],cycle)) +
       '. La contratación estará disponible cuando se conecte la pasarela de pago.';
     message.hidden = false;
   });
