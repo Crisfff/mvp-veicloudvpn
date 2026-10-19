@@ -16,15 +16,16 @@
   const fixedFooter = document.getElementById('vcPlansFooter');
   if (!panel || !page || !openLink || !back || !cycleTrigger || !cycleMenu || !cta) return;
 
+  // Descuentos moderados: priorizan sostenibilidad con servidores de capacidad limitada.
   const plans = {
-    standard: {name:'Standard', monthly:199, discounts:{monthly:0, yearly:.05, twoYears:.10}},
-    gold: {name:'Gold', monthly:499, discounts:{monthly:0, yearly:.07, twoYears:.12}},
-    premium: {name:'Premium', monthly:899, discounts:{monthly:0, yearly:.10, twoYears:.18}}
+    standard: {name:'Standard', monthly:199, discounts:{monthly:0, sixMonths:.03, yearly:.06}},
+    gold: {name:'Gold', monthly:499, discounts:{monthly:0, sixMonths:.05, yearly:.09}},
+    premium: {name:'Premium', monthly:899, discounts:{monthly:0, sixMonths:.07, yearly:.12}}
   };
   const cycles = {
     monthly:{months:1,label:'Plan mensual',unit:'/mes',billing:'Facturado cada mes'},
-    yearly:{months:12,label:'Plan anual',unit:'/año',billing:'Facturado una vez al año'},
-    twoYears:{months:24,label:'Plan de 2 años',unit:'/2 años',billing:'Facturado una vez cada 2 años'}
+    sixMonths:{months:6,label:'Plan de 6 meses',unit:'/6 meses',billing:'Facturado cada 6 meses'},
+    yearly:{months:12,label:'Plan anual',unit:'/año',billing:'Facturado una vez al año'}
   };
   const formatRub = value => new Intl.NumberFormat('es-ES',{maximumFractionDigits:0}).format(value) + ' ₽';
   const monthlyEquivalent = value => new Intl.NumberFormat('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}).format(value);
