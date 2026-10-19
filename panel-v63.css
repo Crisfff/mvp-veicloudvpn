@@ -4752,3 +4752,17 @@ body.panel-drawer-open::before{
   background:#242424 !important;
   z-index:10020 !important;
 }
+
+
+/* Restore natural browser chrome when drawer is closed */
+html:not(.panel-drawer-open),
+body:not(.panel-drawer-open){
+  background:#ffffff !important;
+  color-scheme:light;
+}
+
+html.panel-drawer-open,
+body.panel-drawer-open{
+  background:#242424 !important;
+  color-scheme:dark;
+}
