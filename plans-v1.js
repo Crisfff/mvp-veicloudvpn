@@ -13,6 +13,7 @@
   const cards = Array.from(document.querySelectorAll('.vc-plan[data-plan]'));
   const cta = document.getElementById('vcPlansContinue');
   const message = document.getElementById('vcPlansMessage');
+  const fixedFooter = document.getElementById('vcPlansFooter');
   if (!panel || !page || !openLink || !back || !cycleTrigger || !cycleMenu || !cta) return;
 
   const plans = {
@@ -138,6 +139,18 @@
       '. La contratación estará disponible cuando se conecte la pasarela de pago.';
     message.hidden = false;
   });
+  // Reserve the actual height of the fixed action bar in the normal scroll flow.
+  // The Premium card and disclaimer must never be hidden behind it.
+  if (fixedFooter && typeof ResizeObserver !== 'undefined') {
+    const footerObserver = new ResizeObserver(entries => {
+      const height = entries[0]?.borderBoxSize?.[0]?.blockSize ||
+        fixedFooter.getBoundingClientRect().height;
+      if (height > 0) {
+        page.style.setProperty('--vc-plans-footer-height', Math.ceil(height) + 'px');
+      }
+    });
+    footerObserver.observe(fixedFooter);
+  }
   render();
   syncRoute();
 })();
