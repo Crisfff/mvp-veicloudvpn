@@ -9,7 +9,14 @@ document.addEventListener('visibilitychange', () => {
   if (!document.hidden) applyThemeColor();
 });
 
-lucide.createIcons();
+// Keep the login functional when an external icon CDN is unavailable.
+function refreshIcons(){
+  if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    window.lucide.createIcons();
+  }
+}
+
+refreshIcons();
 
 const authOptions = document.getElementById('authOptions');
 const emailForm = document.getElementById('emailForm');
@@ -67,7 +74,7 @@ function openMobileEmailSheet(){
   mobileEmailSheet?.classList.add('open');
   mobileEmailSheet?.setAttribute('aria-hidden','false');
   document.body.classList.add('sheet-open');
-  lucide.createIcons();
+  refreshIcons();
   setTimeout(() => mobileEmailForm?.querySelector('input')?.focus(), 220);
 }
 
@@ -79,7 +86,16 @@ function closeMobileEmailSheet(){
 }
 
 showEmailForm.addEventListener('click', () => {
-  window.location.href = './panel.html';
+  // On phones, show the login sheet; on desktop, show the inline form.
+  // Do not skip authentication UI by navigating directly to the panel.
+  if (window.matchMedia('(max-width: 759px)').matches) {
+    openMobileEmailSheet();
+    return;
+  }
+  authOptions.hidden = true;
+  emailForm.hidden = false;
+  refreshIcons();
+  setTimeout(() => emailForm.querySelector('input')?.focus(), 80);
 });
 
 backToOptions.addEventListener('click', () => {
@@ -94,7 +110,7 @@ togglePassword.addEventListener('click', () => {
     ? '<i data-lucide="eye-off"></i>'
     : '<i data-lucide="eye"></i>';
   togglePassword.setAttribute('aria-label', reveal ? 'Ocultar contraseña' : 'Mostrar contraseña');
-  lucide.createIcons();
+  refreshIcons();
 });
 
 emailForm.addEventListener('submit', (event) => {
@@ -115,7 +131,7 @@ function openMobileSignupSheet(){
   mobileSignupSheet?.classList.add('open');
   mobileSignupSheet?.setAttribute('aria-hidden','false');
   document.body.classList.add('sheet-open');
-  lucide.createIcons();
+  refreshIcons();
   setTimeout(() => mobileSignupForm?.querySelector('input')?.focus(), 220);
 }
 
@@ -146,7 +162,7 @@ mobileTogglePassword?.addEventListener('click', () => {
     ? '<i data-lucide="eye-off"></i>'
     : '<i data-lucide="eye"></i>';
   mobileTogglePassword.setAttribute('aria-label', reveal ? 'Ocultar contraseña' : 'Mostrar contraseña');
-  lucide.createIcons();
+  refreshIcons();
 });
 
 mobileEmailForm?.addEventListener('submit', (event) => {
@@ -173,7 +189,7 @@ function bindPasswordToggle(input, button){
       ? '<i data-lucide="eye-off"></i>'
       : '<i data-lucide="eye"></i>';
     button.setAttribute('aria-label', reveal ? 'Ocultar contraseña' : 'Mostrar contraseña');
-    lucide.createIcons();
+    refreshIcons();
   });
 }
 
