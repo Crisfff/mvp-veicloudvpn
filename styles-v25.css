@@ -631,3 +631,8 @@ body.sheet-open{
   outline:none !important;
   box-shadow:none !important;
 }
+
+
+/* Login reliability: author display:grid must not override [hidden]. */
+.auth-options[hidden]{display:none !important}
+.email-form[hidden]{display:none !important}
